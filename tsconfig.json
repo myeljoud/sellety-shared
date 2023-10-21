@@ -15,5 +15,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     "moduleResolution": "node"
-  }
+  },
+  "include": ["src", "types", "test"]
 }
