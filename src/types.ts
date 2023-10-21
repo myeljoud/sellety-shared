@@ -4,7 +4,7 @@ import { CURRENCY_FORMATS, STORE_MODES, THEME_OPTIONS } from "./constants";
 import type { SanityProductReviews } from "./sanity/types";
 import type {
   Customer,
-  ShopifyMutationDraftOrderCompleteArgs,
+  ShopifyAdminMutationDraftOrderCompleteArgs,
   Order,
   ProductOption,
   ProductVariant,
@@ -236,7 +236,7 @@ export type CustomerExtraDataApiResponse = {
 };
 
 export type CheckoutCompleteApiInput = {
-  input: ShopifyMutationDraftOrderCompleteArgs;
+  input: ShopifyAdminMutationDraftOrderCompleteArgs;
 };
 
 export type CheckoutCompleteApiResponse =
