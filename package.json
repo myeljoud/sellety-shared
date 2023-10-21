@@ -9,15 +9,18 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./shopify": {
       "import": "./dist/shopify.mjs",
-      "require": "./dist/shopify.js"
+      "require": "./dist/shopify.js",
+      "types": "./dist/shopify.d.ts"
     },
     "./sanity": {
       "import": "./dist/sanity.mjs",
-      "require": "./dist/sanity.js"
+      "require": "./dist/sanity.js",
+      "types": "./dist/sanity.d.ts"
     }
   },
   "scripts": {
