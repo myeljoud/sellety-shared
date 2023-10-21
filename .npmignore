@@ -6,4 +6,5 @@ tsconfig.json
 .gitignore
 .github
 .changeset
-vite.config.ts
+**.config.js
+**.config.ts

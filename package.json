@@ -1,5 +1,7 @@
 {
   "name": "sellety-shared",
+  "description": "This package includes utlity functions for Shopify, Sanity and common tasks.",
+  "author": "Mohamed yahye El Joud <yahyajoud@gmail.com>",
   "license": "MIT",
   "version": "0.1.2",
   "private": false,
@@ -7,26 +9,33 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./shopify": {
-      "import": "./dist/shopify.mjs",
-      "require": "./dist/shopify.js",
-      "types": "./dist/shopify.d.ts"
+      "import": "./shopify/index.mjs",
+      "require": "./shopify/index.js",
+      "types": "./shopify/index.d.ts"
     },
     "./sanity": {
-      "import": "./dist/sanity.mjs",
-      "require": "./dist/sanity.js",
-      "types": "./dist/sanity.d.ts"
+      "import": "./sanity/index.mjs",
+      "require": "./sanity/index.js",
+      "types": "./sanity/index.d.ts"
     }
   },
+  "files": [
+    "shopify",
+    "sanity",
+    "dist",
+    "src"
+  ],
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
-    "build": "tsup src/index.ts src/shopify.ts src/sanity.ts --format cjs,esm --dts",
+    "build": "tsup",
     "lint": "tsc",
     "ci": "pnpm lint && pnpm test && pnpm build",
     "release": "pnpm lint && pnpm test && pnpm build && changeset publish"
