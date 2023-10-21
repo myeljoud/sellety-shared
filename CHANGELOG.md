@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.1
+
+### Patch Changes
+
+- f6a42d3: added subpaths
+
 ## 0.1.0
 
 ### Minor Changes
