@@ -146,6 +146,10 @@ export type Metafield = {
   value: string;
 };
 
+export type ShopifyQueryRootArgs = {
+  id: string;
+};
+
 export type ShopifyCustomer = {
   id: string;
   createdAt: string;
@@ -344,6 +348,45 @@ export type ShopifyUserError = {
   message: string;
 };
 
+export type ShopifyAdminUserError = {
+  field?: Maybe<string[]>;
+  message: string;
+};
+
+export type ShopifyAdminCustomer = {
+  addresses: MailingAddress[];
+  amountSpent: Money;
+  canDelete: boolean;
+  createdAt: string;
+  defaultAddress?: Maybe<MailingAddress>;
+  displayName: string;
+  email?: Maybe<string>;
+  emailMarketingConsent?: Maybe<{
+    consentUpdatedAt?: Maybe<string>;
+    marketingOptInLevel?: Maybe<string>;
+    marketingState: string;
+  }>;
+  firstName?: Maybe<string>;
+  id: string;
+  lastName?: Maybe<string>;
+  lifetimeDuration: string;
+  locale: string;
+  metafield?: Maybe<Metafield>;
+  note?: Maybe<string>;
+  numberOfOrders: number;
+  phone?: Maybe<string>;
+  smsMarketingConsent?: Maybe<{
+    consentCollectedFrom?: Maybe<string>;
+    consentUpdatedAt?: Maybe<string>;
+    marketingOptInLevel: string;
+    marketingState: string;
+  }>;
+  tags: string[];
+  updatedAt: string;
+  validEmailAddress: boolean;
+  verifiedEmail: boolean;
+};
+
 export type ShopifyCustomerAccessToken = {
   accessToken: string;
   expiresAt: string;
@@ -363,6 +406,16 @@ export type ShopifyCustomerUpdatePayload = {
   customer?: Maybe<ShopifyCustomer>;
   customerAccessToken?: Maybe<ShopifyCustomerAccessToken>;
   customerUserErrors: ShopifyUserError[];
+};
+
+export type ShopifyAdminDraftOrderCalculatePayload = {
+  calculatedDraftOrder?: Maybe<ShopifyAdminCalculatedDraftOrder>;
+  userErrors: ShopifyAdminUserError;
+};
+
+export type ShopifyAdminDraftOrderCompletePayload = {
+  draftOrder?: Maybe<ShopifyAdminDraftOrder>;
+  userErrors: ShopifyAdminUserError;
 };
 
 export type ShopifyMutationCustomerAccessTokenCreateArgs = {
@@ -395,11 +448,280 @@ export type ShopifyMutationCustomerUpdateArgs = {
   customerAccessToken: string;
 };
 
-export type ShopifyMutationDraftOrderCompleteArgs = {
+export type ShopifyAdminCustomerInput = {
+  addresses?: Maybe<ShopifyAdminMailingAddressInput[]>;
+  email?: Maybe<string>;
+  firstName?: Maybe<string>;
+  id?: Maybe<string>;
+  lastName?: Maybe<string>;
+  metafields?: Maybe<ShopifyAdminMetafieldInput[]>;
+  note?: Maybe<string>;
+  phone?: Maybe<string>;
+  tags?: Maybe<string[]>;
+};
+
+export type ShopifyAdminMutationCustomerUpdateArgs = {
+  input: ShopifyAdminCustomerInput;
+};
+
+export type ShopifyAdminCustomerUpdatePayload = {
+  customer?: Maybe<ShopifyAdminCustomer>;
+  userErrors: ShopifyAdminUserError[];
+};
+
+export type ShopifyAdminProductInput = {
+  descriptionHtml?: Maybe<string>;
+  handle?: Maybe<string>;
+  id?: Maybe<string>;
+  images?: Maybe<
+    {
+      altText?: Maybe<string>;
+      id?: Maybe<string>;
+      src?: Maybe<string>;
+    }[]
+  >;
+  options?: Maybe<string[]>;
+  productType?: Maybe<string>;
+  status?: Maybe<"DRAFT" | "ACTIVE" | "ARCHIVED">;
+  tags?: Maybe<string[]>;
+  title?: Maybe<string>;
+  variants?: Maybe<ShopifyAdminProductVariantInput[]>;
+  vendor?: Maybe<string>;
+};
+
+export type ShopifyAdminProductVariantInput = {
+  compareAtPrice?: Maybe<string>;
+  harmonizedSystemCode?: Maybe<string>;
+  id?: Maybe<string>;
+  price?: Maybe<string>;
+  productId?: Maybe<string>;
+  requiresShipping?: Maybe<boolean>;
+  sku?: Maybe<string>;
+};
+
+export type ShopifyAdminMutationProductUpdateArgs = {
+  input: ShopifyAdminProductInput;
+};
+
+export type ShopifyAdminMutationDraftOrderCompleteArgs = {
   id: string;
   paymentGatewayId?: Maybe<string>;
   paymentPending?: Maybe<boolean>;
   sourceName?: Maybe<string>;
+};
+
+export type ShopifyAdminMutationDraftOrderCalculateArgs = {
+  input: ShopifyAdminDraftOrderInput;
+};
+
+export type ShopifyAdminMutationDraftOrderCreateArgs = {
+  input: ShopifyAdminDraftOrderInput;
+};
+
+export type ShopifyAdminDraftOrderCreatePayload = {
+  draftOrder?: Maybe<ShopifyAdminDraftOrder>;
+  userErrors: ShopifyAdminUserError[];
+};
+
+export type ShopifyAdminMutationDraftOrderUpdateArgs = {
+  id: string;
+  input: ShopifyAdminDraftOrderInput;
+};
+
+export type ShopifyAdminDraftOrderUpdatePayload = {
+  draftOrder?: Maybe<ShopifyAdminDraftOrder>;
+  userErrors: ShopifyAdminUserError[];
+};
+
+export type ShopifyAdminDraftOrderInput = {
+  billingAddress?: Maybe<ShopifyAdminMailingAddressInput>;
+  customAttributes?: Maybe<ShopifyAttributeInput[]>;
+  email?: Maybe<string>;
+  lineItems?: Maybe<DraftOrderLineItemInput[]>;
+  note?: Maybe<string>;
+  phone?: Maybe<string>;
+  presentmentCurrencyCode?: Maybe<string>;
+  purchasingEntity?: Maybe<{
+    customerId?: Maybe<string>;
+  }>;
+  shippingAddress?: Maybe<ShopifyAdminMailingAddressInput>;
+  shippingLine?: Maybe<ShopifyShippingLineInput>;
+  sourceName?: Maybe<string>;
+  tags?: Maybe<string[]>;
+  taxExempt?: Maybe<boolean>;
+  useCustomerDefaultAddress?: Maybe<boolean>;
+  visibleToCustomer?: Maybe<boolean>;
+};
+
+export type ShopifyAttribute = {
+  key: string;
+  value?: Maybe<string>;
+};
+
+export type ShopifyAttributeInput = {
+  key: string;
+  value: string;
+};
+
+export type ShopifyShippingLineInput = {
+  price?: Maybe<string>;
+  shippingRateHandle?: Maybe<string>;
+  title?: Maybe<string>;
+};
+
+type BaseMailingAddressInput = {
+  address1?: Maybe<string>;
+  address2?: Maybe<string>;
+  city?: Maybe<string>;
+  company?: Maybe<string>;
+  firstName?: Maybe<string>;
+  lastName?: Maybe<string>;
+  phone?: Maybe<string>;
+  zip?: Maybe<string>;
+};
+
+export type ShopifyMailingAddressInput = BaseMailingAddressInput & {
+  country?: Maybe<string>;
+  province?: Maybe<string>;
+};
+
+export type ShopifyAdminMailingAddressInput = BaseMailingAddressInput & {
+  countryCode?: Maybe<string>;
+  provinceCode?: Maybe<string>;
+};
+
+export type ShopifyAdminMetafieldInput = {
+  id?: Maybe<string>;
+  key?: Maybe<string>;
+  namespace?: Maybe<string>;
+  type?: Maybe<string>;
+  value?: Maybe<string>;
+};
+
+export type ShopifyShippingRate = {
+  handle: string;
+  price: Money;
+  title: string;
+};
+
+export type ShopifyAdminShippingLine = {
+  code?: Maybe<string>;
+  custom: boolean;
+  deliveryCategory?: Maybe<string>;
+  discountedPriceSet: ShopifyMoneyBag;
+  id?: Maybe<string>;
+  originalPriceSet: ShopifyMoneyBag;
+  phone?: Maybe<string>;
+  shippingRateHandle?: Maybe<string>;
+  source?: Maybe<string>;
+  title: string;
+};
+
+export type ShopifyMoneyBag = {
+  presentmentMoney: Money;
+  shopMoney: Money;
+};
+
+export type ShopifyAdminDraftOrder = {
+  billingAddress?: Maybe<MailingAddress>;
+  billingAddressMatchesShippingAddress: boolean;
+  completedAt?: Maybe<string>;
+  createdAt: string;
+  currencyCode: string;
+  customAttributes: ShopifyAttribute[];
+  defaultCursor: string;
+  email?: Maybe<string>;
+  id: string;
+  lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
+  lineItemsSubtotalPrice: ShopifyMoneyBag;
+  name: string;
+  note2?: Maybe<string>;
+  order?: Maybe<Order>;
+  phone?: Maybe<string>;
+  ready: boolean;
+  reserveInventoryUntil?: Maybe<string>;
+  shippingAddress?: Maybe<MailingAddress>;
+  shippingLine?: Maybe<ShopifyAdminShippingLine>;
+  status: ShopifyAdminDraftOrderStatus;
+  subtotalPrice: string;
+  tags: string[];
+  taxExempt: boolean;
+  totalDiscountsSet: ShopifyMoneyBag;
+  totalLineItemsPriceSet: ShopifyMoneyBag;
+  totalPrice: string;
+  totalShippingPrice: string;
+  totalTax: string;
+  totalWeight: number;
+  updatedAt: string;
+  visibleToCustomer: boolean;
+};
+
+export type ShopifyAdminDraftOrderLineItem = {
+  custom: boolean;
+  customAttributes: ShopifyAttribute[];
+  discountedTotal: string;
+  discountedUnitPrice: string;
+  grams?: Maybe<number>;
+  id: string;
+  image?: Maybe<Image>;
+  isGiftCard: boolean;
+  name: string;
+  originalTotal: string;
+  originalUnitPrice: string;
+  quantity: number;
+  requiresShipping: boolean;
+  sku?: Maybe<string>;
+  taxable: boolean;
+  title: string;
+  totalDiscount: string;
+  variantTitle?: Maybe<string>;
+  vendor?: Maybe<string>;
+};
+
+export type ShopifyAdminCalculatedDraftOrder = {
+  availableShippingRates: ShopifyShippingRate[];
+  billingAddressMatchesShippingAddress: boolean;
+  currencyCode: string;
+  lineItems: ShopifyAdminCalculatedDraftOrderLineItem[];
+  lineItemsSubtotalPrice: ShopifyMoneyBag;
+  marketName: string;
+  marketRegionCountryCode: string;
+  phone?: Maybe<string>;
+  presentmentCurrencyCode: string;
+  shippingLine?: Maybe<ShopifyAdminShippingLine>;
+  subtotalPrice: string;
+  totalDiscountsSet: ShopifyMoneyBag;
+  totalLineItemsPriceSet: ShopifyMoneyBag;
+  totalPrice: string;
+  totalShippingPrice: string;
+  totalTax: string;
+};
+
+export type ShopifyAdminCalculatedDraftOrderLineItem = {
+  custom: boolean;
+  customAttributes: ShopifyAttribute[];
+  discountedTotal: Money;
+  discountedTotalSet: ShopifyMoneyBag;
+  discountedUnitPrice: Money;
+  discountedUnitPriceSet: ShopifyMoneyBag;
+  image?: Maybe<Image>;
+  isGiftCard: boolean;
+  name: string;
+  originalTotal: Money;
+  originalTotalSet: ShopifyMoneyBag;
+  originalUnitPrice: Money;
+  originalUnitPriceSet: ShopifyMoneyBag;
+  product?: Maybe<ShopifyProduct>;
+  quantity: number;
+  requiresShipping: boolean;
+  sku?: Maybe<string>;
+  taxable: boolean;
+  title: string;
+  totalDiscount: Money;
+  totalDiscountSet: ShopifyMoneyBag;
+  variant?: Maybe<ProductVariant>;
+  variantTitle?: Maybe<string>;
+  vendor?: Maybe<string>;
 };
 
 export enum ShopifyOrderFinancialStatus {
@@ -463,4 +785,14 @@ export enum ShopifyProductSortKeys {
   UpdatedAt = "UPDATED_AT",
   /** Sort by the `vendor` value. */
   Vendor = "VENDOR",
+}
+
+/** The valid statuses for a draft order. */
+export enum ShopifyAdminDraftOrderStatus {
+  /** The draft order has been paid. */
+  Completed = "COMPLETED",
+  /** An invoice for the draft order has been sent to the customer. */
+  InvoiceSent = "INVOICE_SENT",
+  /** The draft order is open. It has not been paid, and an invoice hasn't been sent. */
+  Open = "OPEN",
 }
