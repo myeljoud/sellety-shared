@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.2
+
+### Patch Changes
+
+- 36b1f78: cleaning tsconfig
+
 ## 0.1.1
 
 ### Patch Changes
