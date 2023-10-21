@@ -6,6 +6,20 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./shopify": {
+      "import": "./dist/shopify.mjs",
+      "require": "./dist/shopify.js"
+    },
+    "./sanity": {
+      "import": "./dist/sanity.mjs",
+      "require": "./dist/sanity.js"
+    }
+  },
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
