@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.4
+
+### Patch Changes
+
+- 5404aaf: Added some new Shopify types
+
 ## 0.1.3
 
 ### Patch Changes
