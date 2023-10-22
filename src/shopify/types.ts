@@ -202,14 +202,8 @@ export type ShopifyProduct = {
   description: string;
   descriptionHtml: string;
   options: ProductOption[];
-  priceRange: {
-    maxVariantPrice: Money;
-    minVariantPrice: Money;
-  };
-  compareAtPriceRange: {
-    maxVariantPrice: Money;
-    minVariantPrice: Money;
-  };
+  priceRange: ProductPriceRangeV2;
+  compareAtPriceRange: ProductPriceRangeV2;
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
@@ -223,6 +217,32 @@ export type ShopifyProduct = {
   brand: Maybe<Metafield>;
   numberOfReviews: Maybe<Metafield>;
   averageRating: Maybe<Metafield>;
+};
+
+export type ShopifyAdminProduct = {
+  collections: Connection<{
+    id: string;
+    title: string;
+  }>;
+  description: string;
+  descriptionHtml: string;
+  featuredImage?: Maybe<Image>;
+  handle: string;
+  id: string;
+  images: Connection<Image>;
+  options: ProductOption[];
+  priceRangeV2: ProductPriceRangeV2;
+  seo: SEO;
+  tags: string[];
+  title: string;
+  updatedAt: string;
+  variants: Connection<ShopifyAdminProductVariant>;
+  vendor: string;
+};
+
+export type ProductPriceRangeV2 = {
+  maxVariantPrice: Money;
+  minVariantPrice: Money;
 };
 
 export type ShopifyCollection = {
@@ -241,7 +261,7 @@ export type ShopifyOrder = {
   email?: Maybe<string>;
   financialStatus?: Maybe<ShopifyOrderFinancialStatus>;
   fulfillmentStatus: ShopifyOrderFulfillmentStatus;
-  lineItems: Connection<OrderLineItem>;
+  lineItems: Connection<ShopifyOrderLineItem>;
   name: string;
   orderNumber: number;
   processedAt: string;
@@ -254,16 +274,56 @@ export type ShopifyOrder = {
   currentTotalTax: Money;
 };
 
+export type ShopifyAdminOrder = {
+  id: string;
+  cancelledAt?: Maybe<string>;
+  email?: Maybe<string>;
+  displayFinancialStatus?: Maybe<ShopifyOrderFinancialStatus>;
+  displayFulfillmentStatus: ShopifyOrderFulfillmentStatus;
+  lineItems: Connection<ShopifyAdminOrderLineItem>;
+  name: string;
+  processedAt: string;
+  shippingAddress?: Maybe<MailingAddress>;
+  totalPriceSet: ShopifyMoneyBag;
+  totalShippingPriceSet: ShopifyMoneyBag;
+  totalTaxSet?: Maybe<ShopifyMoneyBag>;
+  currentSubtotalPriceSet: ShopifyMoneyBag;
+  currentTotalPriceSet: ShopifyMoneyBag;
+  currentTotalTaxSet: ShopifyMoneyBag;
+};
+
 export type ShopifyOrderLineItem = {
   currentQuantity: number;
   originalTotalPrice: Money;
   quantity: number;
   title: string;
   variant?: Maybe<
-    ProductVariant & {
+    ShopifyAdminOrderLineItem & {
       product: ShopifyProduct;
     }
   >;
+};
+
+export type ShopifyAdminOrderLineItem = {
+  currentQuantity: number;
+  originalTotalSet: ShopifyMoneyBag;
+  quantity: number;
+  title: string;
+  variant?: Maybe<ProductVariant>;
+};
+
+export type ShopifyAdminProductVariant = {
+  id: string;
+  title: string;
+  availableForSale: boolean;
+  inventoryQuantity?: Maybe<number>;
+  selectedOptions: SelectedOption[];
+  price: string;
+  compareAtPrice?: Maybe<string>;
+  image?: Maybe<Image>;
+  inventoryItem: {
+    requiresShipping: boolean;
+  };
 };
 
 export type DraftOrderLineItemInput = {
