@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.8
+
+### Patch Changes
+
+- f2a6677: Fixing a Shopify type
+
 ## 0.1.7
 
 ### Patch Changes
