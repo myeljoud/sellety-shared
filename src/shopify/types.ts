@@ -343,8 +343,12 @@ export type ShopifyCartLineInput = {
   sellingPlanId?: Maybe<string>;
 };
 
-export type ShopifyCartLineUpdateInput = ShopifyCartLineInput & {
+export type ShopifyCartLineUpdateInput = Omit<
+  ShopifyCartLineInput,
+  "merchandiseId"
+> & {
   id: string;
+  merchandiseId?: Maybe<string>;
 };
 
 export type ShopifyCartInput = {
@@ -585,6 +589,10 @@ export type ShopifyAdminProductInput = {
   title?: Maybe<string>;
   variants?: Maybe<ShopifyAdminProductVariantInput[]>;
   vendor?: Maybe<string>;
+  seo?: Maybe<{
+    description?: Maybe<string>;
+    title?: Maybe<string>;
+  }>;
 };
 
 export type ShopifyAdminProductVariantInput = {
