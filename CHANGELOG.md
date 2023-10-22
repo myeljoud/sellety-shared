@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.9
+
+### Patch Changes
+
+- 652081a: Fixing a bug in a shopify query
+
 ## 0.1.8
 
 ### Patch Changes
