@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.7
+
+### Patch Changes
+
+- d99e32f: Added types for cart operations
+
 ## 0.1.6
 
 ### Patch Changes
