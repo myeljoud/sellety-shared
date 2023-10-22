@@ -322,9 +322,51 @@ export type ShopifyOrderArgs = {
   locale: ShopifyLocales;
 };
 
+export type ShopifyCartBuyerIdentityInput = {
+  countryCode?: Maybe<"MR">;
+  customerAccessToken?: Maybe<string>;
+  deliveryAddressPreferences?: Maybe<
+    {
+      customerAddressId?: Maybe<string>;
+      deliveryAddress?: Maybe<ShopifyMailingAddressInput>;
+    }[]
+  >;
+  email?: Maybe<string>;
+  phone?: Maybe<string>;
+  walletPreferences?: Maybe<string[]>;
+};
+
+export type ShopifyCartLineInput = {
+  merchandiseId: string;
+  attributes?: Maybe<ShopifyAttributeInput[]>;
+  quantity?: Maybe<number>;
+  sellingPlanId?: Maybe<string>;
+};
+
+export type ShopifyCartLineUpdateInput = ShopifyCartLineInput & {
+  id: string;
+};
+
+export type ShopifyCartInput = {
+  attributes?: Maybe<ShopifyAttributeInput[]>;
+  buyerIdentity?: Maybe<ShopifyCartBuyerIdentityInput>;
+  discountCodes?: Maybe<string[]>;
+  lines?: Maybe<ShopifyCartLineInput[]>;
+  note?: Maybe<string>;
+};
+
+export type ShopifyMutationCartCreateArgs = {
+  input?: Maybe<ShopifyCartInput>;
+};
+
 export type ShopifyCartCreatePayload = {
   cart: Maybe<ShopifyCart>;
   userErrors: ShopifyUserError[];
+};
+
+export type ShopifyMutationCartLinesAddArgs = {
+  cartId: string;
+  lines: ShopifyCartLineInput[];
 };
 
 export type ShopifyCartLinesAddPayload = {
@@ -332,9 +374,19 @@ export type ShopifyCartLinesAddPayload = {
   userErrors: ShopifyUserError[];
 };
 
+export type ShopifyMutationCartLinesRemoveArgs = {
+  cartId: string;
+  lineIds: string[];
+};
+
 export type ShopifyCartLinesRemovePayload = {
   cart: Maybe<ShopifyCart>;
   userErrors: ShopifyUserError[];
+};
+
+export type ShopifyMutationCartLinesUpdateArgs = {
+  cartId: string;
+  lines: ShopifyCartLineUpdateInput[];
 };
 
 export type ShopifyCartLinesUpdatePayload = {
@@ -447,6 +499,51 @@ export type ShopifyMutationCustomerUpdateArgs = {
   };
   customerAccessToken: string;
 };
+
+export type ShopifyMutationCustomerAddressCreateArgs = {
+  address: ShopifyMailingAddressInput;
+  customerAccessToken: string;
+};
+
+export type ShopifyCustomerAddressCreatePayload = {
+  customerAddress?: Maybe<MailingAddress>;
+  customerUserErrors: ShopifyUserError[];
+};
+
+export type ShopifyMutationCustomerAddressDeleteArgs = {
+  customerAccessToken: string;
+  id: string;
+};
+
+export type ShopifyCustomerAddressDeletePayload = {
+  customerUserErrors: ShopifyUserError[];
+  deletedCustomerAddressId?: Maybe<string>;
+};
+
+export type ShopifyMutationCustomerAddressUpdateArgs = {
+  address: ShopifyMailingAddressInput;
+  customerAccessToken: string;
+  id: string;
+};
+
+export type ShopifyCustomerAddressUpdatePayload = {
+  customerAddress?: Maybe<MailingAddress>;
+  customerUserErrors: ShopifyUserError[];
+};
+
+export type ShopifyMutationCustomerDefaultAddressUpdateArgs = {
+  addressId: string;
+  customerAccessToken: string;
+};
+
+export type ShopifyCustomerDefaultAddressUpdatePayload = {
+  customer?: Maybe<{
+    id: string;
+  }>;
+  customerUserErrors: ShopifyUserError[];
+};
+
+//* ------------------------------- ADMIN ---------------------------
 
 export type ShopifyAdminCustomerInput = {
   addresses?: Maybe<ShopifyAdminMailingAddressInput[]>;
