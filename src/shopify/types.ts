@@ -237,7 +237,9 @@ export type ShopifyAdminProduct = {
   seo: SEO;
   tags: string[];
   updatedAt: string;
-  variants: Connection<ShopifyAdminProductVariant>;
+  brand: Maybe<Metafield>;
+  numberOfReviews: Maybe<Metafield>;
+  averageRating: Maybe<Metafield>;
 };
 
 export type ShopifyAdminProductVariant = {
