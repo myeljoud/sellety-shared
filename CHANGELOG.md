@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.16
+
+### Patch Changes
+
+- bb28b4d: Added custom Metafields to `ShopifyAdminProduct`
+
 ## 0.1.15
 
 ### Patch Changes
