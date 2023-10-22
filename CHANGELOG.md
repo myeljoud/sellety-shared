@@ -1,5 +1,13 @@
 # sellety-shared
 
+## 0.1.11
+
+### Patch Changes
+
+- 5308380: Patch update
+
+  - Adds a missing fragment in `SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT`.
+
 ## 0.1.10
 
 ### Patch Changes
