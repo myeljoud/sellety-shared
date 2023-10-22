@@ -23,19 +23,6 @@ export const SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT = /* GraphQL */ `
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
 `;
 
-export const SHOPIFY_ADMIN_DISCOUNT_APPLICATION_FRAGMENT = /* GraphQL */ `
-  fragment DiscountApplicationFragment on DiscountApplication {
-    allocationMethod
-    targetSelection
-    targetType
-    value {
-      ... on MoneyV2 {
-        amount
-      }
-    }
-  }
-`;
-
 /* -------------------------------------------------------------------------- */
 /*                     Shopify products related fragments                     */
 /* -------------------------------------------------------------------------- */
@@ -57,7 +44,7 @@ export const SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT = /* GraphQL */ `
   }
 `;
 
-export const SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT = /* GraphQL */ `
+export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
   fragment AdminProductThumbnailFragment on Product {
     title
     featuredImage {
@@ -91,66 +78,40 @@ export const SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT = /* GraphQL */ `
 /*                       Shopify draft orders fragments                       */
 /* -------------------------------------------------------------------------- */
 
-/**
- * This fragment needs `MoneyBagFragment` to be added to its parent
- */
-export const SHOPIFY_ADMIN_DRAFT_ORDER_APPLIED_DISCOUNT_FRAGMENT = /* GraphQL */ `
-  fragment AdminDraftOrderAppliedDiscountFragment on DraftOrderAppliedDiscount {
-    description
-    title
-    value
-    valueType
-    amountSet {
-      ...MoneyBagFragment
-    }
-    amountV2 {
-      money
-    }
-  }
-`;
-
 export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
   fragment AdminDraftOrderFragment on DraftOrder {
-    appliedDiscount {
-      ...AdminDraftOrderAppliedDiscountFragment
-    }
-    billingAddressMatchesShippingAddress
     completedAt
     createdAt
+    updatedAt
     currencyCode
-    customAttributes {
-      key
-      value
-    }
+    email
+    id
+    name
+    note2
+    phone
+    ready
     customer {
       id
     }
-    email
-    id
-    invoiceUrl
     lineItems(first: 50) {
       edges {
         node {
           id
+          name
           image {
             ...ImageWithoutUrlFragment
             url(transform: { maxHeight: 450, maxWidth: 450 })
           }
           originalTotal
           originalUnitPrice
+          totalDiscount
           quantity
-          variant {
-            ...AdminProductVariantFragment
-            product {
-              ...AdminProductThumbnailFragment
-              variants(first: 1) {
-                edges {
-                  node {
-                    compareAtPrice
-                  }
-                }
-              }
-            }
+          variantTitle
+          vendor
+          product {
+            id
+            handle
+            title
           }
         }
       }
@@ -158,17 +119,9 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     lineItemsSubtotalPrice {
       ...MoneyBagFragment
     }
-    name
-    note2
-    phone
-    presentmentCurrencyCode
-    purchasingEntity {
-      ... on Customer {
-        id
-      }
+    order {
+      id
     }
-    ready
-    reserveInventoryUntil
     shippingAddress {
       ...AddressFragment
     }
@@ -177,8 +130,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     }
     status
     subtotalPrice
-    tags
-    taxesIncluded
     totalDiscountsSet {
       ...MoneyBagFragment
     }
@@ -193,16 +144,10 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
   ${SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT}
   ${SHOPIFY_ADDRESS_FRAGMENT}
-  ${SHOPIFY_ADMIN_DRAFT_ORDER_APPLIED_DISCOUNT_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT}
 `;
 
 export const SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
   fragment AdminCalculatedDraftOrderFragment on CalculatedDraftOrder {
-    appliedDiscount {
-      ...AdminDraftOrderAppliedDiscountFragment
-    }
     availableShippingRates {
       handle
       price {
@@ -210,191 +155,5 @@ export const SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
       }
       title
     }
-    billingAddressMatchesShippingAddress
-    customer {
-      displayName
-    }
-    currencyCode
-    lineItems {
-      appliedDiscount {
-        ...AdminDraftOrderAppliedDiscountFragment
-      }
-      custom
-      discountedTotal {
-        money
-      }
-      discountedUnitPrice {
-        money
-      }
-      image {
-        ...ImageWithoutUrlFragment
-        url(transform: { maxHeight: 450, maxWidth: 450 })
-      }
-      name
-      originalTotal {
-        money
-      }
-      originalUnitPrice {
-        money
-      }
-      quantity
-      title
-      totalDiscount {
-        money
-      }
-      vendor
-      variant {
-        id
-      }
-    }
-    lineItemsSubtotalPrice {
-      ...MoneyBagFragment
-    }
-    marketName
-    marketRegionCountryCode
-    phone
-    presentmentCurrencyCode
-    purchasingEntity {
-      ... on Customer {
-        displayName
-      }
-    }
-    shippingLine {
-      ...AdminShippingLineFragment
-    }
-    subtotalPrice
-    totalDiscountsSet {
-      ...MoneyBagFragment
-    }
-    totalPrice
-    totalShippingPrice
   }
-
-  ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
-  ${SHOPIFY_MONEY_BAG_FRAGMENT}
-  ${SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT}
-  ${SHOPIFY_ADMIN_DRAFT_ORDER_APPLIED_DISCOUNT_FRAGMENT}
-`;
-
-/* -------------------------------------------------------------------------- */
-/*                          Shopify orders fragments                          */
-/* -------------------------------------------------------------------------- */
-
-export const SHOPIFY_ADMIN_ORDER_FRAGMENT = /* GraphQL */ `
-  fragment AdminOrderFragment on Order {
-    billingAddressMatchesShippingAddress
-    cancelledAt
-    cancelReason
-    canMarkAsPaid
-    canNotifyCustomer
-    createdAt
-    currencyCode
-    currentSubtotalLineItemsQuantity
-    currentSubtotalPriceSet {
-      ...MoneyBagFragment
-    }
-    currentTotalDiscountsSet {
-      ...MoneyBagFragment
-    }
-    currentTotalDutiesSet {
-      ...MoneyBagFragment
-    }
-    currentTotalPriceSet {
-      ...MoneyBagFragment
-    }
-    currentTotalTaxSet {
-      ...MoneyBagFragment
-    }
-    customAttributes {
-      key
-      value
-    }
-    customer {
-      id
-    }
-    discountCodes
-    displayAddress {
-      ...AddressFragment
-    }
-    displayFinancialStatus
-    displayFulfillmentStatus
-    edited
-    email
-    fullyPaid
-    id
-    name
-    netPaymentSet {
-      ...MoneyBagFragment
-    }
-    note
-    phone
-    processedAt
-    purchasingEntity {
-      ... on Customer {
-        id
-      }
-    }
-    requiresShipping
-    shippingAddress {
-      ...AddressFragment
-    }
-    shippingLine {
-      ...AdminShippingLineFragment
-    }
-    tags
-    totalShippingPriceSet {
-      ...MoneyBagFragment
-    }
-    totalRefundedShippingSet {
-      ...MoneyBagFragment
-    }
-    unpaid
-    updatedAt
-    discountApplications(first: 10) {
-      edges {
-        node {
-          ...DiscountApplicationFragment
-        }
-      }
-    }
-    lineItems(first: 20) {
-      edges {
-        node {
-          id
-          currentQuantity
-          customAttributes {
-            key
-            value
-          }
-          originalTotalSet {
-            ...MoneyBagFragment
-          }
-          originalUnitPriceSet {
-            ...MoneyBagFragment
-          }
-          quantity
-          requiresShipping
-          variant {
-            ...AdminProductVariantFragment
-            product {
-              ...AdminProductThumbnailFragment
-              variants(first: 1) {
-                edges {
-                  node {
-                    compareAtPrice
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  ${SHOPIFY_ADMIN_DISCOUNT_APPLICATION_FRAGMENT}
-  ${SHOPIFY_ADDRESS_FRAGMENT}
-  ${SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT}
 `;

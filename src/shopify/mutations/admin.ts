@@ -1,7 +1,7 @@
 import {
   SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT,
-  SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT,
+  SHOPIFY_ADMIN_PRODUCT_FRAGMENT,
 } from "../fragments";
 
 /* -------------------------------------------------------------------------- */
@@ -56,15 +56,13 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_UPDATE_MUTATION = /* GraphQL */ `
   ${SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT}
 `;
 
-// TODO draft order fragment in an order type??!
-
 export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
   mutation draftOrderComplete($id: ID!, $paymentPending: Boolean) {
     draftOrderComplete(id: $id, paymentPending: $paymentPending) {
       draftOrder {
         id
         order {
-          ...AdminDraftOrderFragment
+          id
         }
       }
       userErrors {
@@ -73,8 +71,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
       }
     }
   }
-
-  ${SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT}
 `;
 
 /* -------------------------------------------------------------------------- */
@@ -118,5 +114,5 @@ export const SHOPIFY_ADMIN_PRODUCT_UPDATE_MUTATION = /* GraphQL */ `
     }
   }
 
-  ${SHOPIFY_ADMIN_PRODUCT_THUMBNAIL_FRAGMENT}
+  ${SHOPIFY_ADMIN_PRODUCT_FRAGMENT}
 `;

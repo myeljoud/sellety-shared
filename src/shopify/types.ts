@@ -480,6 +480,7 @@ export type ShopifyAdminProductInput = {
       src?: Maybe<string>;
     }[]
   >;
+  metafields?: Maybe<ShopifyAdminMetafieldInput[]>;
   options?: Maybe<string[]>;
   productType?: Maybe<string>;
   status?: Maybe<"DRAFT" | "ACTIVE" | "ARCHIVED">;
@@ -605,16 +606,10 @@ export type ShopifyShippingRate = {
 };
 
 export type ShopifyAdminShippingLine = {
-  code?: Maybe<string>;
-  custom: boolean;
-  deliveryCategory?: Maybe<string>;
-  discountedPriceSet: ShopifyMoneyBag;
   id?: Maybe<string>;
-  originalPriceSet: ShopifyMoneyBag;
-  phone?: Maybe<string>;
-  shippingRateHandle?: Maybe<string>;
-  source?: Maybe<string>;
   title: string;
+  shippingRateHandle?: Maybe<string>;
+  originalPriceSet: ShopifyMoneyBag;
 };
 
 export type ShopifyMoneyBag = {
@@ -623,105 +618,54 @@ export type ShopifyMoneyBag = {
 };
 
 export type ShopifyAdminDraftOrder = {
-  billingAddress?: Maybe<MailingAddress>;
-  billingAddressMatchesShippingAddress: boolean;
   completedAt?: Maybe<string>;
   createdAt: string;
+  updatedAt: string;
   currencyCode: string;
-  customAttributes: ShopifyAttribute[];
-  defaultCursor: string;
   email?: Maybe<string>;
   id: string;
-  lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
-  lineItemsSubtotalPrice: ShopifyMoneyBag;
   name: string;
   note2?: Maybe<string>;
-  order?: Maybe<Order>;
   phone?: Maybe<string>;
   ready: boolean;
-  reserveInventoryUntil?: Maybe<string>;
+  customer: {
+    id: string;
+  };
+  lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
+  lineItemsSubtotalPrice: ShopifyMoneyBag;
+  order?: Maybe<{
+    id: string;
+  }>;
   shippingAddress?: Maybe<MailingAddress>;
   shippingLine?: Maybe<ShopifyAdminShippingLine>;
   status: ShopifyAdminDraftOrderStatus;
   subtotalPrice: string;
-  tags: string[];
-  taxExempt: boolean;
   totalDiscountsSet: ShopifyMoneyBag;
   totalLineItemsPriceSet: ShopifyMoneyBag;
   totalPrice: string;
   totalShippingPrice: string;
   totalTax: string;
-  totalWeight: number;
-  updatedAt: string;
-  visibleToCustomer: boolean;
 };
 
 export type ShopifyAdminDraftOrderLineItem = {
-  custom: boolean;
-  customAttributes: ShopifyAttribute[];
-  discountedTotal: string;
-  discountedUnitPrice: string;
-  grams?: Maybe<number>;
   id: string;
   image?: Maybe<Image>;
-  isGiftCard: boolean;
   name: string;
   originalTotal: string;
   originalUnitPrice: string;
-  quantity: number;
-  requiresShipping: boolean;
-  sku?: Maybe<string>;
-  taxable: boolean;
-  title: string;
   totalDiscount: string;
+  quantity: number;
   variantTitle?: Maybe<string>;
   vendor?: Maybe<string>;
+  product: Maybe<{
+    id: string;
+    handle: string;
+    title: string;
+  }>;
 };
 
 export type ShopifyAdminCalculatedDraftOrder = {
   availableShippingRates: ShopifyShippingRate[];
-  billingAddressMatchesShippingAddress: boolean;
-  currencyCode: string;
-  lineItems: ShopifyAdminCalculatedDraftOrderLineItem[];
-  lineItemsSubtotalPrice: ShopifyMoneyBag;
-  marketName: string;
-  marketRegionCountryCode: string;
-  phone?: Maybe<string>;
-  presentmentCurrencyCode: string;
-  shippingLine?: Maybe<ShopifyAdminShippingLine>;
-  subtotalPrice: string;
-  totalDiscountsSet: ShopifyMoneyBag;
-  totalLineItemsPriceSet: ShopifyMoneyBag;
-  totalPrice: string;
-  totalShippingPrice: string;
-  totalTax: string;
-};
-
-export type ShopifyAdminCalculatedDraftOrderLineItem = {
-  custom: boolean;
-  customAttributes: ShopifyAttribute[];
-  discountedTotal: Money;
-  discountedTotalSet: ShopifyMoneyBag;
-  discountedUnitPrice: Money;
-  discountedUnitPriceSet: ShopifyMoneyBag;
-  image?: Maybe<Image>;
-  isGiftCard: boolean;
-  name: string;
-  originalTotal: Money;
-  originalTotalSet: ShopifyMoneyBag;
-  originalUnitPrice: Money;
-  originalUnitPriceSet: ShopifyMoneyBag;
-  product?: Maybe<ShopifyProduct>;
-  quantity: number;
-  requiresShipping: boolean;
-  sku?: Maybe<string>;
-  taxable: boolean;
-  title: string;
-  totalDiscount: Money;
-  totalDiscountSet: ShopifyMoneyBag;
-  variant?: Maybe<ProductVariant>;
-  variantTitle?: Maybe<string>;
-  vendor?: Maybe<string>;
 };
 
 export enum ShopifyOrderFinancialStatus {
