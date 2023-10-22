@@ -222,7 +222,7 @@ export const reshapeOrder = (order: ShopifyOrder): Order => {
 
   return {
     ...rest,
-    lineItems: removeEdgesAndNodes(lineItems),
+    lineItems: reshapeOrderLineItems(removeEdgesAndNodes(lineItems)),
     status,
   };
 };

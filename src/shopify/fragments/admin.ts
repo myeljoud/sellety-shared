@@ -27,35 +27,70 @@ export const SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT = /* GraphQL */ `
 
 export const SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT = /* GraphQL */ `
   fragment AdminProductVariantFragment on ProductVariant {
-    inventoryQuantity
-    availableForSale
-    compareAtPrice
     id
-    displayName
+    title
+    availableForSale
     inventoryQuantity
     selectedOptions {
       name
       value
     }
     price
-    title
+    compareAtPrice
+    image {
+      ...ImageWithoutUrlFragment
+      url(transform: { maxHeight: 450, maxWidth: 450 })
+    }
+    inventoryItem {
+      requiresShipping
+    }
   }
+
+  ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 
 export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
   fragment AdminProductFragment on Product {
+    id
+    handle
     title
+    vendor
+    collections(first: 100) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+    description
+    descriptionHtml
     featuredImage {
       ...ImageWithoutUrlFragment
       url(transform: { maxHeight: 450, maxWidth: 450 })
     }
-    vendor
-    id
-    handle
+    images(first: 10) {
+      edges {
+        node {
+          ...ImageWithoutUrlFragment
+          url(transform: { maxHeight: 700, maxWidth: 700 })
+        }
+      }
+    }
+    options {
+      id
+      name
+      values
+    }
     priceRangeV2 {
       ...ProductPriceRangeV2Fragment
     }
+    seo {
+      title
+      description
+    }
     tags
+    updatedAt
     brand: metafield(namespace: "custom", key: "product_brand") {
       ...MetafieldFragment
     }

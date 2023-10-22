@@ -1,7 +1,10 @@
 import {
+  SHOPIFY_ADDRESS_FRAGMENT,
   SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_PRODUCT_FRAGMENT,
+  SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT,
+  SHOPIFY_MONEY_BAG_FRAGMENT,
 } from "../fragments";
 
 /* -------------------------------------------------------------------------- */
@@ -63,6 +66,51 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
         id
         order {
           id
+          cancelledAt
+          email
+          displayFinancialStatus
+          displayFulfillmentStatus
+          lineItems(first: 50) {
+            edges {
+              node {
+                currentQuantity
+                originalTotalSet {
+                  ...MoneyBagFragment
+                }
+                quantity
+                title
+                variant {
+                  ...AdminProductVariantFragment
+                  product {
+                    ...AdminProductFragment
+                  }
+                }
+              }
+            }
+          }
+          name
+          processedAt
+          shippingAddress {
+            ...AddressFragment
+          }
+          totalPriceSet {
+            ...MoneyBagFragment
+          }
+          totalShippingPriceSet {
+            ...MoneyBagFragment
+          }
+          totalTaxSet {
+            ...MoneyBagFragment
+          }
+          currentSubtotalPriceSet {
+            ...MoneyBagFragment
+          }
+          currentTotalPriceSet {
+            ...MoneyBagFragment
+          }
+          currentTotalTaxSet {
+            ...MoneyBagFragment
+          }
         }
       }
       userErrors {
@@ -71,6 +119,11 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
       }
     }
   }
+
+  ${SHOPIFY_MONEY_BAG_FRAGMENT}
+  ${SHOPIFY_ADDRESS_FRAGMENT}
+  ${SHOPIFY_ADMIN_PRODUCT_FRAGMENT}
+  ${SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT}
 `;
 
 /* -------------------------------------------------------------------------- */

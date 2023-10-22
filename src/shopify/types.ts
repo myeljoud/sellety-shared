@@ -220,6 +220,10 @@ export type ShopifyProduct = {
 };
 
 export type ShopifyAdminProduct = {
+  id: string;
+  handle: string;
+  title: string;
+  vendor: string;
   collections: Connection<{
     id: string;
     title: string;
@@ -227,17 +231,27 @@ export type ShopifyAdminProduct = {
   description: string;
   descriptionHtml: string;
   featuredImage?: Maybe<Image>;
-  handle: string;
-  id: string;
   images: Connection<Image>;
   options: ProductOption[];
   priceRangeV2: ProductPriceRangeV2;
   seo: SEO;
   tags: string[];
-  title: string;
   updatedAt: string;
   variants: Connection<ShopifyAdminProductVariant>;
-  vendor: string;
+};
+
+export type ShopifyAdminProductVariant = {
+  id: string;
+  title: string;
+  availableForSale: boolean;
+  inventoryQuantity?: Maybe<number>;
+  selectedOptions: SelectedOption[];
+  price: string;
+  compareAtPrice?: Maybe<string>;
+  image?: Maybe<Image>;
+  inventoryItem: {
+    requiresShipping: boolean;
+  };
 };
 
 export type ProductPriceRangeV2 = {
@@ -298,7 +312,7 @@ export type ShopifyOrderLineItem = {
   quantity: number;
   title: string;
   variant?: Maybe<
-    ShopifyAdminOrderLineItem & {
+    ProductVariant & {
       product: ShopifyProduct;
     }
   >;
@@ -309,21 +323,11 @@ export type ShopifyAdminOrderLineItem = {
   originalTotalSet: ShopifyMoneyBag;
   quantity: number;
   title: string;
-  variant?: Maybe<ProductVariant>;
-};
-
-export type ShopifyAdminProductVariant = {
-  id: string;
-  title: string;
-  availableForSale: boolean;
-  inventoryQuantity?: Maybe<number>;
-  selectedOptions: SelectedOption[];
-  price: string;
-  compareAtPrice?: Maybe<string>;
-  image?: Maybe<Image>;
-  inventoryItem: {
-    requiresShipping: boolean;
-  };
+  variant?: Maybe<
+    ShopifyAdminProductVariant & {
+      product: ShopifyAdminProduct;
+    }
+  >;
 };
 
 export type DraftOrderLineItemInput = {
