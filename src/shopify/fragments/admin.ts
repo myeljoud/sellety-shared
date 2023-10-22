@@ -151,7 +151,8 @@ export const SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     availableShippingRates {
       handle
       price {
-        money
+        amount
+        currencyCode
       }
       title
     }
