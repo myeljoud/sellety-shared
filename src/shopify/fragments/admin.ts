@@ -19,8 +19,6 @@ export const SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT = /* GraphQL */ `
       ...MoneyBagFragment
     }
   }
-
-  ${SHOPIFY_MONEY_BAG_FRAGMENT}
 `;
 
 /* -------------------------------------------------------------------------- */
