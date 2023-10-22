@@ -87,11 +87,13 @@ export const SHOPIFY_ADMIN_CUSTOMER_UPDATE_MUTATION = /* GraphQL */ `
       customer {
         id
         metafields(first: 3) {
-          nodes {
-            id
-            namespace
-            key
-            value
+          edges {
+            node {
+              id
+              namespace
+              key
+              value
+            }
           }
         }
       }

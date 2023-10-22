@@ -149,8 +149,10 @@ export const SHOPIFY_PRODUCT_THUMBNAIL_FRAGMENT = /* GraphQL */ `
       ...MetafieldFragment
     }
     variants(first: 20) {
-      nodes {
-        ...ProductVariantFragment
+      edges {
+        node {
+          ...ProductVariantFragment
+        }
       }
     }
   }

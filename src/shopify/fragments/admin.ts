@@ -129,22 +129,26 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     id
     invoiceUrl
     lineItems(first: 50) {
-      nodes {
-        id
-        image {
-          ...ImageWithoutUrlFragment
-          url(transform: { maxHeight: 450, maxWidth: 450 })
-        }
-        originalTotal
-        originalUnitPrice
-        quantity
-        variant {
-          ...AdminProductVariantFragment
-          product {
-            ...AdminProductThumbnailFragment
-            variants(first: 1) {
-              nodes {
-                compareAtPrice
+      edges {
+        node {
+          id
+          image {
+            ...ImageWithoutUrlFragment
+            url(transform: { maxHeight: 450, maxWidth: 450 })
+          }
+          originalTotal
+          originalUnitPrice
+          quantity
+          variant {
+            ...AdminProductVariantFragment
+            product {
+              ...AdminProductThumbnailFragment
+              variants(first: 1) {
+                edges {
+                  node {
+                    compareAtPrice
+                  }
+                }
               }
             }
           }
@@ -347,33 +351,39 @@ export const SHOPIFY_ADMIN_ORDER_FRAGMENT = /* GraphQL */ `
     unpaid
     updatedAt
     discountApplications(first: 10) {
-      nodes {
-        ...DiscountApplicationFragment
+      edges {
+        node {
+          ...DiscountApplicationFragment
+        }
       }
     }
     lineItems(first: 20) {
-      nodes {
-        id
-        currentQuantity
-        customAttributes {
-          key
-          value
-        }
-        originalTotalSet {
-          ...MoneyBagFragment
-        }
-        originalUnitPriceSet {
-          ...MoneyBagFragment
-        }
-        quantity
-        requiresShipping
-        variant {
-          ...AdminProductVariantFragment
-          product {
-            ...AdminProductThumbnailFragment
-            variants(first: 1) {
-              nodes {
-                compareAtPrice
+      edges {
+        node {
+          id
+          currentQuantity
+          customAttributes {
+            key
+            value
+          }
+          originalTotalSet {
+            ...MoneyBagFragment
+          }
+          originalUnitPriceSet {
+            ...MoneyBagFragment
+          }
+          quantity
+          requiresShipping
+          variant {
+            ...AdminProductVariantFragment
+            product {
+              ...AdminProductThumbnailFragment
+              variants(first: 1) {
+                edges {
+                  node {
+                    compareAtPrice
+                  }
+                }
               }
             }
           }
