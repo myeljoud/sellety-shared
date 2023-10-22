@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.5
+
+### Patch Changes
+
+- 52a90a3: Changing node to edges
+
 ## 0.1.4
 
 ### Patch Changes
