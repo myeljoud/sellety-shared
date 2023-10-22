@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.1.10
+
+### Patch Changes
+
+- 882cb30: - Fixing a bug in `createCalculatedDraftOrder` mutation.
+  - Fix a typo in a shopify fragment
+
 ## 0.1.9
 
 ### Patch Changes
