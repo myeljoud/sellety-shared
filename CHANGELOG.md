@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.6
+
+### Patch Changes
+
+- a2343f2: tightening up some types
+
 ## 0.1.5
 
 ### Patch Changes
