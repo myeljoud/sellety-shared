@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.13
+
+### Patch Changes
+
+- 9b445ef: Added some new admin types
+
 ## 0.1.12
 
 ### Patch Changes
