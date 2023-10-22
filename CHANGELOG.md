@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.15
+
+### Patch Changes
+
+- d8b5f6a: Fixing some fragments
+
 ## 0.1.14
 
 ### Patch Changes
