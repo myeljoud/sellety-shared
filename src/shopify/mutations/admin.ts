@@ -109,7 +109,7 @@ export const SHOPIFY_ADMIN_PRODUCT_UPDATE_MUTATION = /* GraphQL */ `
   mutation productUpdateMutation($input: ProductInput!) {
     productUpdate(input: $input) {
       product {
-        ...AdminProductThumbnailFragment
+        ...AdminProductFragment
       }
     }
   }

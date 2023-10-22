@@ -45,16 +45,19 @@ export const SHOPIFY_MONEY_BAG_FRAGMENT = /* GraphQL */ `
 export const SHOPIFY_MONEY_V2_FRAGMENT = /* GraphQL */ `
   fragment MoneyV2Fragment on MoneyV2 {
     amount
+    currencyCode
   }
 `;
 
-export const SHOPIFY_PRODUCT_PRICE_RANGE_FRAGMENT = /* GraphQL */ `
-  fragment ProductPriceRangeFragment on ProductPriceRange {
+export const SHOPIFY_PRODUCT_PRICE_RANGE_V2_FRAGMENT = /* GraphQL */ `
+  fragment ProductPriceRangeV2Fragment on ProductPriceRangeV2 {
     maxVariantPrice {
       amount
+      currencyCode
     }
     minVariantPrice {
       amount
+      currencyCode
     }
   }
 `;

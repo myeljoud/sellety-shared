@@ -3,7 +3,7 @@ import {
   SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT,
   SHOPIFY_METAFIELD_FRAGMENT,
   SHOPIFY_MONEY_BAG_FRAGMENT,
-  SHOPIFY_PRODUCT_PRICE_RANGE_FRAGMENT,
+  SHOPIFY_PRODUCT_PRICE_RANGE_V2_FRAGMENT,
 } from "./common";
 
 /* -------------------------------------------------------------------------- */
@@ -45,7 +45,7 @@ export const SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT = /* GraphQL */ `
 `;
 
 export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
-  fragment AdminProductThumbnailFragment on Product {
+  fragment AdminProductFragment on Product {
     title
     featuredImage {
       ...ImageWithoutUrlFragment
@@ -55,7 +55,7 @@ export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
     id
     handle
     priceRangeV2 {
-      ...ProductPriceRangeFragment
+      ...ProductPriceRangeV2Fragment
     }
     tags
     brand: metafield(namespace: "custom", key: "product_brand") {
@@ -69,7 +69,7 @@ export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
     }
   }
 
-  ${SHOPIFY_PRODUCT_PRICE_RANGE_FRAGMENT}
+  ${SHOPIFY_PRODUCT_PRICE_RANGE_V2_FRAGMENT}
   ${SHOPIFY_METAFIELD_FRAGMENT}
   ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
