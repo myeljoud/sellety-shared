@@ -1,5 +1,13 @@
 # sellety-shared
 
+## 0.1.12
+
+### Patch Changes
+
+- 6c2fdaf: Bug fixes
+
+  - Deleting duplicated fragment in `SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT`
+
 ## 0.1.11
 
 ### Patch Changes
