@@ -63,7 +63,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
   mutation draftOrderComplete($id: ID!, $paymentPending: Boolean) {
     draftOrderComplete(id: $id, paymentPending: $paymentPending) {
       draftOrder {
-        id
+        ...AdminDraftOrderFragment
         order {
           id
           cancelledAt
@@ -120,8 +120,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
     }
   }
 
-  ${SHOPIFY_MONEY_BAG_FRAGMENT}
-  ${SHOPIFY_ADDRESS_FRAGMENT}
+  ${SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT}
   ${SHOPIFY_ADMIN_PRODUCT_FRAGMENT}
   ${SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT}
 `;

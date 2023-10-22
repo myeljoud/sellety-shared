@@ -38,15 +38,16 @@ export const SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT = /* GraphQL */ `
     price
     compareAtPrice
     image {
-      ...ImageWithoutUrlFragment
+      id
+      width
+      height
+      altText
       url(transform: { maxHeight: 450, maxWidth: 450 })
     }
     inventoryItem {
       requiresShipping
     }
   }
-
-  ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 
 export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
@@ -66,13 +67,19 @@ export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
     description
     descriptionHtml
     featuredImage {
-      ...ImageWithoutUrlFragment
+      id
+      width
+      height
+      altText
       url(transform: { maxHeight: 450, maxWidth: 450 })
     }
     images(first: 10) {
       edges {
         node {
-          ...ImageWithoutUrlFragment
+          id
+          width
+          height
+          altText
           url(transform: { maxHeight: 700, maxWidth: 700 })
         }
       }
@@ -151,9 +158,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     }
     lineItemsSubtotalPrice {
       ...MoneyBagFragment
-    }
-    order {
-      id
     }
     shippingAddress {
       ...AddressFragment

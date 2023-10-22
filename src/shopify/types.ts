@@ -802,9 +802,8 @@ export type ShopifyAdminDraftOrder = {
   };
   lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
   lineItemsSubtotalPrice: ShopifyMoneyBag;
-  order?: Maybe<{
-    id: string;
-  }>;
+  /** This will only be available for `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION` payload */
+  order?: Maybe<ShopifyAdminOrder>;
   shippingAddress?: Maybe<MailingAddress>;
   shippingLine?: Maybe<ShopifyAdminShippingLine>;
   status: ShopifyAdminDraftOrderStatus;
