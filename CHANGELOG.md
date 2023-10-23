@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.21
+
+### Patch Changes
+
+- e78f872: patch fix
+
 ## 0.1.20
 
 ### Patch Changes
