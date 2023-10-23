@@ -240,8 +240,8 @@ export type CheckoutCompleteApiInput = {
 };
 
 export type CheckoutCompleteApiResponse =
-  | { orderId: string; error: null }
-  | { orderId: never; error: string };
+  | { order: Order; error: null }
+  | { order: never; error: string };
 
 export type ChangePasswordApiInput = ChangePasswordFormValues & {
   email?: Maybe<string>;

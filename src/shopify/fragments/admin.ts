@@ -111,7 +111,6 @@ export const SHOPIFY_ADMIN_PRODUCT_FRAGMENT = /* GraphQL */ `
 
   ${SHOPIFY_PRODUCT_PRICE_RANGE_V2_FRAGMENT}
   ${SHOPIFY_METAFIELD_FRAGMENT}
-  ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 
 /* -------------------------------------------------------------------------- */
