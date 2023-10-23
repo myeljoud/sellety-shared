@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.22
+
+### Patch Changes
+
+- c631918: Simplfying `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION` payload
+
 ## 0.1.21
 
 ### Patch Changes
