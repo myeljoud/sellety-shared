@@ -292,12 +292,13 @@ export type ShopifyOrder = {
 
 export type ShopifyAdminOrder = {
   id: string;
-  cancelledAt?: Maybe<string>;
   email?: Maybe<string>;
+  cancelledAt?: Maybe<string>;
   displayFinancialStatus?: Maybe<ShopifyOrderFinancialStatus>;
   displayFulfillmentStatus: ShopifyOrderFulfillmentStatus;
   lineItems: Connection<ShopifyAdminOrderLineItem>;
   name: string;
+  poNumber?: Maybe<string>;
   processedAt: string;
   shippingAddress?: Maybe<MailingAddress>;
   totalPriceSet: ShopifyMoneyBag;

@@ -43,7 +43,7 @@ const swapSanityProductsWithShopifysInModules = async (
         locale: getShopifyLocale(locale),
       });
 
-      productsList.module.products = reshapeProducts(nodes);
+      productsList.module.products = reshapeProducts(nodes.filter(Boolean));
     }
 
     productsListModules.forEach(productsListModule => {

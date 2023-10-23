@@ -187,7 +187,7 @@ export const reshapeProducts = (products: ShopifyProduct[]) => {
 export const reshapeOrderLineItems = (
   lineItems: ShopifyOrderLineItem[]
 ): OrderLineItem[] => {
-  const reshapedProducts = [];
+  const reshapedLineItems = [];
 
   for (const lineItem of lineItems) {
     const reshapedLineItem = {
@@ -199,10 +199,10 @@ export const reshapeOrderLineItems = (
           }
         : null,
     };
-    reshapedProducts.push(reshapedLineItem);
+    reshapedLineItems.push(reshapedLineItem);
   }
 
-  return reshapedProducts;
+  return reshapedLineItems;
 };
 
 export const reshapeOrder = (order: ShopifyOrder): Order => {

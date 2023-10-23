@@ -1,4 +1,4 @@
-import { CART_ITEMS_LIMIT } from "../../constants";
+import { SHOPIFY_CART_ITEMS_LIMIT } from "../../constants";
 import {
   SHOPIFY_ADDRESS_FRAGMENT,
   SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT,
@@ -71,7 +71,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
           cancelledAt
           displayFinancialStatus
           displayFulfillmentStatus
-          lineItems(first: ${CART_ITEMS_LIMIT}) {
+          lineItems(first: ${SHOPIFY_CART_ITEMS_LIMIT}) {
             edges {
               node {
                 currentQuantity
@@ -93,6 +93,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
             }
           }
           name
+          poNumber
           processedAt
           shippingAddress {
             ...AddressFragment
