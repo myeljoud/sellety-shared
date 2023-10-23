@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.18
+
+### Patch Changes
+
+- 6b24ea7: Fixing `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION`exeeding query limit.
+
 ## 0.1.17
 
 ### Patch Changes
