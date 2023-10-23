@@ -116,3 +116,5 @@ export const UNAVAILABLE_SANITY_MODULES = ["informationals"];
 export const STORE_MODES = ["sellety", "grocery"] as const;
 export const CURRENCY_FORMATS = ["MRU", "MRO"] as const;
 export const THEME_OPTIONS = ["light", "dark", "system"] as const;
+
+export const CART_ITEMS_LIMIT = 20;

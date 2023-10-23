@@ -322,14 +322,13 @@ export type ShopifyOrderLineItem = {
 
 export type ShopifyAdminOrderLineItem = {
   currentQuantity: number;
+  variantTitle?: Maybe<string>;
   originalTotalSet: ShopifyMoneyBag;
   quantity: number;
   title: string;
-  variant?: Maybe<
-    ShopifyAdminProductVariant & {
-      product: ShopifyAdminProduct;
-    }
-  >;
+  vendor?: Maybe<string>;
+  image?: Maybe<Image>;
+  product?: Maybe<{ handle: string }>;
 };
 
 export type DraftOrderLineItemInput = {

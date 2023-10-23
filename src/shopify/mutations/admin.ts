@@ -1,9 +1,11 @@
+import { CART_ITEMS_LIMIT } from "../../constants";
 import {
   SHOPIFY_ADDRESS_FRAGMENT,
   SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_PRODUCT_FRAGMENT,
   SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT,
+  SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT,
   SHOPIFY_MONEY_BAG_FRAGMENT,
 } from "../fragments";
 
@@ -65,24 +67,27 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
       draftOrder {
         order {
           id
-          cancelledAt
           email
+          cancelledAt
           displayFinancialStatus
           displayFulfillmentStatus
-          lineItems(first: 20) {
+          lineItems(first: ${CART_ITEMS_LIMIT}) {
             edges {
               node {
                 currentQuantity
+                variantTitle
+                quantity
+                title
+                vendor
+                image {
+                  ...ImageWithoutUrlFragment
+                  url(transform: { maxHeight: 700, maxWidth: 700 })
+                }
                 originalTotalSet {
                   ...MoneyBagFragment
                 }
-                quantity
-                title
-                variant {
-                  ...AdminProductVariantFragment
-                }
                 product {
-                  ...AdminProductFragment
+                  handle
                 }
               }
             }
@@ -121,8 +126,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
 
   ${SHOPIFY_ADDRESS_FRAGMENT}
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_FRAGMENT}
-  ${SHOPIFY_ADMIN_PRODUCT_VARIANT_FRAGMENT}
+  ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 
 /* -------------------------------------------------------------------------- */
