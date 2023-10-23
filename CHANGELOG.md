@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.19
+
+### Patch Changes
+
+- 2bb8e7a: Deleting unsed fragment in `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION`
+
 ## 0.1.18
 
 ### Patch Changes
