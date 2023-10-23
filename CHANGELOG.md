@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.20
+
+### Patch Changes
+
+- 2f926cc: patch fix
+
 ## 0.1.19
 
 ### Patch Changes
