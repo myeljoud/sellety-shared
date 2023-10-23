@@ -63,14 +63,13 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
   mutation draftOrderComplete($id: ID!, $paymentPending: Boolean) {
     draftOrderComplete(id: $id, paymentPending: $paymentPending) {
       draftOrder {
-        ...AdminDraftOrderFragment
         order {
           id
           cancelledAt
           email
           displayFinancialStatus
           displayFulfillmentStatus
-          lineItems(first: 50) {
+          lineItems(first: 20) {
             edges {
               node {
                 currentQuantity
@@ -81,9 +80,9 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
                 title
                 variant {
                   ...AdminProductVariantFragment
-                  product {
-                    ...AdminProductFragment
-                  }
+                }
+                product {
+                  ...AdminProductFragment
                 }
               }
             }
