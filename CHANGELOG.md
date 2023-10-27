@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.1.24
+
+### Patch Changes
+
+- f3d0c33: Added some new required env variables
+
 ## 0.1.23
 
 ### Patch Changes
