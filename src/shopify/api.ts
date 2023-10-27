@@ -68,14 +68,7 @@ export async function createCustomer(args: ShopifyMutationCustomerCreateArgs) {
     ShopifyMutationCustomerCreateArgs
   >(SHOPIFY_CUSTOMER_CREATE_MUTATION, args);
 
-  if (!customerCreate.customer) {
-    throw Error("Couldn't create customer");
-  }
-
-  return {
-    customer: customerCreate.customer,
-    customerUserErrors: customerCreate.customerUserErrors,
-  };
+  return customerCreate;
 }
 
 export async function updateCustomer(args: ShopifyMutationCustomerUpdateArgs) {
