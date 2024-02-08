@@ -70,7 +70,7 @@ export const SHOPIFY_CUSTOMER_EXTRA_DATA_MF_NAMESPACE = "custom";
 export const SHOPIFY_CUSTOMER_EXTRA_DATA_MF_KEY = "customer_extra_data";
 
 export const DEFAULT_OPTION = "Default Title";
-export const SHOPIFY_GRAPHQL_API_ENDPOINT = "/api/2023-10/graphql.json";
+export const SHOPIFY_GRAPHQL_API_ENDPOINT = "/api/2024-01/graphql.json";
 
 export const SANITY_API_VERSION = "2023-01-01";
 

@@ -131,12 +131,12 @@ export type Image = {
 export type MailingAddress = {
   id: string;
   address1?: Maybe<string>;
-  address2?: Maybe<string>;
   city?: Maybe<string>;
   country?: Maybe<string>;
   firstName?: Maybe<string>;
   lastName?: Maybe<string>;
   phone?: Maybe<string>;
+  formatted: string[];
 };
 
 export type Metafield = {

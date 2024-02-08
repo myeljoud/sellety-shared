@@ -238,6 +238,19 @@ export const reshapeOrders = (orders: ShopifyOrder[]) => {
   return reshapedOrders;
 };
 
+export const reshapeOrdersV2 = (orders: Connection<ShopifyOrder>) => {
+  const _orders = removeEdgesAndNodes(orders);
+
+  const reshapedOrders = [];
+
+  for (const order of _orders) {
+    const reshapedOrder = reshapeOrder(order);
+    reshapedOrders.push(reshapedOrder);
+  }
+
+  return reshapedOrders;
+};
+
 export const hasProductOptions = (options?: ProductOption[]) => {
   const firstOption = options?.[0];
 
