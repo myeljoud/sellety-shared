@@ -27,11 +27,13 @@ import {
   ShopifyCustomer,
   ShopifyCustomerAccessTokenCreatePayload,
   ShopifyCustomerAddressCreatePayload,
+  ShopifyCustomerAddressUpdatePayload,
   ShopifyCustomerArgs,
   ShopifyCustomerCreatePayload,
   ShopifyCustomerUpdatePayload,
   ShopifyMutationCustomerAccessTokenCreateArgs,
   ShopifyMutationCustomerAddressCreateArgs,
+  ShopifyMutationCustomerAddressUpdateArgs,
   ShopifyMutationCustomerCreateArgs,
   ShopifyMutationCustomerUpdateArgs,
   ShopifyOrder,
@@ -135,10 +137,10 @@ export function createShopifyClient({
     },
 
     async updateCustomerAddress(
-      args: ShopifyMutationCustomerAddressCreateArgs
+      args: ShopifyMutationCustomerAddressUpdateArgs
     ) {
       const { customerAddressUpdate } =
-        await shopifyClient.request<ShopifyCustomerAddressCreatePayload>(
+        await shopifyClient.request<ShopifyCustomerAddressUpdatePayload>(
           SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION,
           args
         );
