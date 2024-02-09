@@ -14,10 +14,10 @@ export const SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION = /* GraphQL */ `
       id: $id
     ) {
       customerAddress {
-        ...Address
+        ...AddressFragment
       }
       customerUserErrors {
-        ...CustomerUserError
+        ...CustomerUserErrorFragment
       }
     }
   }

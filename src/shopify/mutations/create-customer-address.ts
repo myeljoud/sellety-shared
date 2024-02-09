@@ -12,10 +12,10 @@ export const SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION = /* GraphQL */ `
       customerAccessToken: $customerAccessToken
     ) {
       customerAddress {
-        ...Address
+        ...AddressFragment
       }
       customerUserErrors {
-        ...CustomerUserError
+        ...CustomerUserErrorFragment
       }
     }
   }

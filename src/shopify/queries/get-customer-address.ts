@@ -5,7 +5,7 @@ export const SHOPIFY_GET_CUSTOMER_ADDRESS_QUERY = /* GraphQL */ `
   @inContext(language: $locale) {
     customer(customerAccessToken: $customerAccessToken) {
       defaultAddress {
-        ...Address
+        ...AddressFragment
       }
     }
   }
