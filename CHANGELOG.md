@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.2.4
+
+### Patch Changes
+
+- 3b55721: fixing `getCustomerAddress` function query.
+
 ## 0.2.3
 
 ### Patch Changes
