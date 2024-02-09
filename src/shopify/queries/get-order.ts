@@ -5,7 +5,7 @@ export const SHOPIFY_GET_ORDER_QUERY = /* GraphQL */ `
   @inContext(language: $locale) {
     node(id: $id) {
       ... on Order {
-        ...Order
+        ...OrderFragment
       }
     }
   }
