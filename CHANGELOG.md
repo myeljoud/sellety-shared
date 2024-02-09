@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.3.1
+
+### Patch Changes
+
+- 59bf9b0: Adding the correct return type for: `updateCartLines` & `removeCartLines`.
+- 7ca907c: `SHOPIFY_CART_CREATE_MUTATION` input is not required
+
 ## 0.3.0
 
 ### Minor Changes
