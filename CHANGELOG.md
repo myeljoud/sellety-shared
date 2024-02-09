@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.2.0
+
+### Minor Changes
+
+- 3865287: Introducing a new API for Shopify client
+
 ## 0.1.24
 
 ### Patch Changes
