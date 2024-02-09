@@ -10,7 +10,7 @@ import {
 /* -------------------------------------------------------------------------- */
 
 export const SHOPIFY_CART_CREATE_MUTATION = /* GraphQL */ `
-  mutation cartCreate($input: CartInput!, $locale: LanguageCode)
+  mutation cartCreate($input: CartInput, $locale: LanguageCode)
   @inContext(language: $locale) {
     cartCreate(input: $input) {
       cart {
