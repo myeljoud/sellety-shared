@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.2.5
+
+### Patch Changes
+
+- 19e7dc6: Fixing some Shopify GraphQL fragment names.
+
 ## 0.2.4
 
 ### Patch Changes
