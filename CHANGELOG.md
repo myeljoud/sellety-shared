@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.2.6
+
+### Patch Changes
+
+- df11ee4: Added `totalRefunded` to Shopify order.
+- 3ee257b: Fixing error in `SHOPIFY_GET_ORDER_QUERY` where the fragment was mentioned with the wrong name.
+
 ## 0.2.5
 
 ### Patch Changes
