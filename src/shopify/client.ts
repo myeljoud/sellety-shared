@@ -209,13 +209,13 @@ export function createShopifyClient({
     async createCustomerAddress(
       args: ShopifyMutationCustomerAddressCreateArgs
     ) {
-      const { customerAddressUpdate } =
+      const { customerAddressCreate } =
         await shopifyClient.request<ShopifyCustomerAddressCreatePayload>(
           SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION,
           args
         );
 
-      return customerAddressUpdate;
+      return customerAddressCreate;
     },
 
     async updateCustomerAddress(

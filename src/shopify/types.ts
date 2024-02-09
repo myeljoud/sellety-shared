@@ -603,7 +603,7 @@ export type ShopifyMutationCustomerUpdateArgs = {
 };
 
 export type ShopifyCustomerAddressCreatePayload = {
-  customerAddressUpdate: {
+  customerAddressCreate: {
     customerAddress?: Maybe<MailingAddress>;
     customerUserErrors: ShopifyUserError[];
   };
