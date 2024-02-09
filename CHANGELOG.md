@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.2.1
+
+### Patch Changes
+
+- f2c2717: Re-exporting new shopify client and LATEST_API_VERSION
+
 ## 0.2.0
 
 ### Minor Changes
