@@ -1,5 +1,17 @@
 # sellety-shared
 
+## 0.3.0
+
+### Minor Changes
+
+- 23ad757: Added some new functions and types
+
+  - `getCart` to get a customer cart by id.
+  - `createCart` creates a cart session.
+  - `addCartLines` add new lines to an existing cart by id.
+  - `updateCartLines` updates existing cart lines.
+  - `removeCartLines` removes lines from the cart.
+
 ## 0.2.6
 
 ### Patch Changes
