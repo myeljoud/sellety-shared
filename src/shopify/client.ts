@@ -10,6 +10,7 @@ import {
 import {
   SHOPIFY_GET_COLLECTION_BY_HANDLE_QUERY,
   SHOPIFY_GET_COLLECTION_PRODUCTS_BY_HANDLE_QUERY,
+  SHOPIFY_GET_CUSTOMER_ADDRESS_QUERY,
   SHOPIFY_GET_CUSTOMER_ORDERS_QUERY,
   SHOPIFY_GET_CUSTOMER_QUERY,
   SHOPIFY_GET_ORDER_QUERY,
@@ -113,7 +114,7 @@ export function createShopifyClient({
     async getCustomerAddress(args: ShopifyCustomerArgs) {
       const { customer } = await shopifyClient.request<{
         customer?: Pick<ShopifyCustomer, "defaultAddress">;
-      }>(SHOPIFY_GET_CUSTOMER_ORDERS_QUERY, args);
+      }>(SHOPIFY_GET_CUSTOMER_ADDRESS_QUERY, args);
 
       if (!customer) {
         throw {
