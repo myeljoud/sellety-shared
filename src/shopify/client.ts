@@ -18,7 +18,6 @@ import { SHOPIFY_GET_CUSTOMER_ORDERS } from "./queries/get-customer-orders";
 import {
   Collection,
   Connection,
-  Customer,
   Product,
   ShopifyCollection,
   ShopifyCollectionArgs,
@@ -43,19 +42,18 @@ import {
   reshapeCollection,
   reshapeCustomer,
   reshapeOrder,
-  reshapeOrders,
   reshapeOrdersV2,
   reshapeProduct,
   reshapeProducts,
 } from "./utils";
 
-const LATEST_API_VERSION = "2024-01";
+export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
-export default async function createShopifyClient({
+export async function createShopifyClient({
   storeDomain,
   privateAccessToken,
   publicAccessToken,
-  apiVersion = LATEST_API_VERSION,
+  apiVersion = SHOPIFY_LATEST_API_VERSION,
 }: {
   publicAccessToken: string;
   /**
