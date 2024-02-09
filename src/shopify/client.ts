@@ -126,7 +126,7 @@ export function createShopifyClient({
         );
 
       return {
-        cart: cartCreate.cart ? reshapeCart(cartCreate.cart) : null,
+        cart: cartCreate.cart && reshapeCart(cartCreate.cart),
         userErrors: cartCreate.userErrors,
       };
     },
@@ -139,7 +139,7 @@ export function createShopifyClient({
         );
 
       return {
-        cart: cartLinesAdd.cart ? reshapeCart(cartLinesAdd.cart) : null,
+        cart: cartLinesAdd.cart && reshapeCart(cartLinesAdd.cart),
         userErrors: cartLinesAdd.userErrors,
       };
     },
@@ -151,7 +151,10 @@ export function createShopifyClient({
           args
         );
 
-      return cartLinesUpdate;
+      return {
+        cart: cartLinesUpdate.cart && reshapeCart(cartLinesUpdate.cart),
+        userErrors: cartLinesUpdate.userErrors,
+      };
     },
 
     async removeCartLines(args: ShopifyMutationCartLinesRemoveArgs) {
@@ -161,7 +164,10 @@ export function createShopifyClient({
           args
         );
 
-      return cartLinesRemove;
+      return {
+        cart: cartLinesRemove.cart && reshapeCart(cartLinesRemove.cart),
+        userErrors: cartLinesRemove.userErrors,
+      };
     },
 
     /**
