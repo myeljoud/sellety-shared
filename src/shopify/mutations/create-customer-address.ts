@@ -1,7 +1,7 @@
 import { SHOPIFY_ADDRESS_FRAGMENT } from "../fragments/address-fragment";
 import { SHOPIFY_CUSTOMER_USER_ERROR_FRAGMENT } from "../fragments/customer-user-error-fragment";
 
-export const SHOPIFY_CREATE_CUSTOMER_ADDRESS = /* GraphQL */ `
+export const SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION = /* GraphQL */ `
   mutation customerAddressCreate(
     $address: MailingAddressInput!
     $customerAccessToken: String!

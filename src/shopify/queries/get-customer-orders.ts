@@ -1,6 +1,6 @@
 import { SHOPIFY_ORDER_FRAGMENT } from "../fragments";
 
-export const SHOPIFY_GET_CUSTOMER_ORDERS = /* GraphQL */ `
+export const SHOPIFY_GET_CUSTOMER_ORDERS_QUERY = /* GraphQL */ `
   query getCustomerOrders($customerAccessToken: String!, $locale: LanguageCode)
   @inContext(language: $locale) {
     customer(customerAccessToken: $customerAccessToken) {

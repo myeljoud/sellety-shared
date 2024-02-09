@@ -1,16 +1,3 @@
-export const SHOPIFY_ADDRESS_FRAGMENT = /* GraphQL */ `
-  fragment AddressFragment on MailingAddress {
-    id
-    address1
-    address2
-    city
-    country
-    firstName
-    lastName
-    phone
-  }
-`;
-
 export const SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT = /* GraphQL */ `
   fragment ImageWithoutUrlFragment on Image {
     id

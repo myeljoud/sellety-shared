@@ -381,6 +381,20 @@ export type ShopifyCollectionProductsArgs = {
 
 export type ShopifyCustomerArgs = {
   customerAccessToken: string;
+  locale: ShopifyLocales;
+};
+
+export type ShopifyMutationCustomerAddressCreateArgs = {
+  address: ShopifyMailingAddressInput;
+  customerAccessToken: string;
+  locale: ShopifyLocales;
+};
+
+export type ShopifyMutationCustomerAddressUpdateArgs = {
+  id: string;
+  address: ShopifyMailingAddressInput;
+  customerAccessToken: string;
+  locale: ShopifyLocales;
 };
 
 export type ShopifyOrderArgs = {
@@ -570,14 +584,11 @@ export type ShopifyMutationCustomerUpdateArgs = {
   customerAccessToken: string;
 };
 
-export type ShopifyMutationCustomerAddressCreateArgs = {
-  address: ShopifyMailingAddressInput;
-  customerAccessToken: string;
-};
-
 export type ShopifyCustomerAddressCreatePayload = {
-  customerAddress?: Maybe<MailingAddress>;
-  customerUserErrors: ShopifyUserError[];
+  customerAddressUpdate: {
+    customerAddress?: Maybe<MailingAddress>;
+    customerUserErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyMutationCustomerAddressDeleteArgs = {
@@ -586,19 +597,17 @@ export type ShopifyMutationCustomerAddressDeleteArgs = {
 };
 
 export type ShopifyCustomerAddressDeletePayload = {
-  customerUserErrors: ShopifyUserError[];
-  deletedCustomerAddressId?: Maybe<string>;
-};
-
-export type ShopifyMutationCustomerAddressUpdateArgs = {
-  address: ShopifyMailingAddressInput;
-  customerAccessToken: string;
-  id: string;
+  customerAddressDelete: {
+    customerUserErrors: ShopifyUserError[];
+    deletedCustomerAddressId?: Maybe<string>;
+  };
 };
 
 export type ShopifyCustomerAddressUpdatePayload = {
-  customerAddress?: Maybe<MailingAddress>;
-  customerUserErrors: ShopifyUserError[];
+  customerAddressUpdate: {
+    customerAddress?: Maybe<MailingAddress>;
+    customerUserErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyMutationCustomerDefaultAddressUpdateArgs = {

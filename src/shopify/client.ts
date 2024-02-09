@@ -1,20 +1,22 @@
 import { GraphQLClient } from "graphql-request";
 import { sleep } from "../utils";
 import {
+  SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION,
   SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION,
   SHOPIFY_CUSTOMER_CREATE_MUTATION,
   SHOPIFY_CUSTOMER_UPDATE_MUTATION,
+  SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION,
 } from "./mutations";
 import {
   SHOPIFY_GET_COLLECTION_BY_HANDLE_QUERY,
   SHOPIFY_GET_COLLECTION_PRODUCTS_BY_HANDLE_QUERY,
+  SHOPIFY_GET_CUSTOMER_ORDERS_QUERY,
   SHOPIFY_GET_CUSTOMER_QUERY,
   SHOPIFY_GET_ORDER_QUERY,
   SHOPIFY_GET_PRODUCTS_BY_QUERY,
   SHOPIFY_GET_PRODUCT_BY_HANDLE_QUERY,
   SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY,
 } from "./queries";
-import { SHOPIFY_GET_CUSTOMER_ORDERS } from "./queries/get-customer-orders";
 import {
   Collection,
   Connection,
@@ -24,10 +26,12 @@ import {
   ShopifyCollectionProductsArgs,
   ShopifyCustomer,
   ShopifyCustomerAccessTokenCreatePayload,
+  ShopifyCustomerAddressCreatePayload,
   ShopifyCustomerArgs,
   ShopifyCustomerCreatePayload,
   ShopifyCustomerUpdatePayload,
   ShopifyMutationCustomerAccessTokenCreateArgs,
+  ShopifyMutationCustomerAddressCreateArgs,
   ShopifyMutationCustomerCreateArgs,
   ShopifyMutationCustomerUpdateArgs,
   ShopifyOrder,
@@ -107,7 +111,7 @@ export function createShopifyClient({
     async getCustomerAddress(args: ShopifyCustomerArgs) {
       const { customer } = await shopifyClient.request<{
         customer?: Pick<ShopifyCustomer, "defaultAddress">;
-      }>(SHOPIFY_GET_CUSTOMER_ORDERS, args);
+      }>(SHOPIFY_GET_CUSTOMER_ORDERS_QUERY, args);
 
       if (!customer) {
         throw {
@@ -118,13 +122,37 @@ export function createShopifyClient({
       return customer.defaultAddress ?? null;
     },
 
+    async createCustomerAddress(
+      args: ShopifyMutationCustomerAddressCreateArgs
+    ) {
+      const { customerAddressUpdate } =
+        await shopifyClient.request<ShopifyCustomerAddressCreatePayload>(
+          SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION,
+          args
+        );
+
+      return customerAddressUpdate;
+    },
+
+    async updateCustomerAddress(
+      args: ShopifyMutationCustomerAddressCreateArgs
+    ) {
+      const { customerAddressUpdate } =
+        await shopifyClient.request<ShopifyCustomerAddressCreatePayload>(
+          SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION,
+          args
+        );
+
+      return customerAddressUpdate;
+    },
+
     /**
      * @error order/customer-not-found Thrown if the customer is not found with the given access token
      */
     async getCustomerOrders(args: ShopifyCustomerArgs) {
       const { customer } = await shopifyClient.request<{
         customer?: Pick<ShopifyCustomer, "orders">;
-      }>(SHOPIFY_GET_CUSTOMER_ORDERS, args);
+      }>(SHOPIFY_GET_CUSTOMER_ORDERS_QUERY, args);
 
       if (!customer) {
         throw {

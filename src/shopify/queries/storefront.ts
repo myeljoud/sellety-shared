@@ -6,7 +6,8 @@ import {
 } from "../fragments";
 
 export const SHOPIFY_GET_CUSTOMER_QUERY = /* GraphQL */ `
-  query getCustomer($customerAccessToken: String!) {
+  query getCustomer($customerAccessToken: String!, $locale: LanguageCode)
+  @inContext(language: $locale) {
     customer(customerAccessToken: $customerAccessToken) {
       ...CustomerFragment
     }
@@ -129,17 +130,4 @@ export const SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY = /* GraphQL */ `
   }
 
   ${SHOPIFY_PRODUCT_FRAGMENT}
-`;
-
-export const SHOPIFY_GET_ORDER_QUERY = /* GraphQL */ `
-  query getOrder($id: ID!, $locale: LanguageCode)
-  @inContext(language: $locale) {
-    node(id: $id) {
-      ... on Order {
-        ...OrderFragment
-      }
-    }
-  }
-
-  ${SHOPIFY_ORDER_FRAGMENT}
 `;

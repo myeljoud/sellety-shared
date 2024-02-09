@@ -2,8 +2,8 @@ import {
   SHOPIFY_CUSTOMER_EXTRA_DATA_MF_KEY,
   SHOPIFY_CUSTOMER_EXTRA_DATA_MF_NAMESPACE,
 } from "../../constants";
+import { SHOPIFY_ADDRESS_FRAGMENT } from "./address-fragment";
 import {
-  SHOPIFY_ADDRESS_FRAGMENT,
   SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT,
   SHOPIFY_METAFIELD_FRAGMENT,
   SHOPIFY_PRODUCT_PRICE_RANGE_V2_FRAGMENT,
@@ -344,12 +344,4 @@ export const SHOPIFY_CUSTOMER_FRAGMENT = /* GraphQL */ `
   }
 
   ${SHOPIFY_ORDER_FRAGMENT}
-`;
-
-export const SHOPIFY_CUSTOMER_USER_ERROR_FRAGMENT = /* GraphQL */ `
-  fragment CustomerUserErrorFragment on CustomerUserError {
-    code
-    field
-    message
-  }
 `;
