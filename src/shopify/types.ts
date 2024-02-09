@@ -284,6 +284,7 @@ export type ShopifyOrder = {
   shippingAddress?: Maybe<MailingAddress>;
   totalPrice: Money;
   totalShippingPrice: Money;
+  totalRefunded: Money;
   totalTax?: Maybe<Money>;
   currentSubtotalPrice: Money;
   currentTotalPrice: Money;

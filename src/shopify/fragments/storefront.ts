@@ -288,6 +288,10 @@ export const SHOPIFY_ORDER_FRAGMENT = /* GraphQL */ `
       amount
       currencyCode
     }
+    totalRefunded {
+      amount
+      currencyCode
+    }
     currentSubtotalPrice {
       amount
       currencyCode
