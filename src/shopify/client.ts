@@ -49,7 +49,7 @@ import {
 
 export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
-export async function createShopifyClient({
+export function createShopifyClient({
   storeDomain,
   privateAccessToken,
   publicAccessToken,
@@ -67,7 +67,7 @@ export async function createShopifyClient({
   /**
    * Storefront API version, defaults to `2024-01`
    */
-  apiVersion: string;
+  apiVersion?: string;
 }) {
   const endpoint = `${storeDomain}/api/${apiVersion}/graphql.json`;
 
