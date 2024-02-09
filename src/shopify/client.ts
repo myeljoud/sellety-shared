@@ -1,6 +1,10 @@
 import { GraphQLClient } from "graphql-request";
 import { sleep } from "../utils";
 import {
+  SHOPIFY_CART_CREATE_MUTATION,
+  SHOPIFY_CART_LINES_ADD_MUTATION,
+  SHOPIFY_CART_LINES_REMOVE_MUTATION,
+  SHOPIFY_CART_LINES_UPDATE_MUTATION,
   SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION,
   SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION,
   SHOPIFY_CUSTOMER_CREATE_MUTATION,
@@ -8,6 +12,7 @@ import {
   SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION,
 } from "./mutations";
 import {
+  SHOPIFY_GET_CART_BY_ID_QUERY,
   SHOPIFY_GET_COLLECTION_BY_HANDLE_QUERY,
   SHOPIFY_GET_COLLECTION_PRODUCTS_BY_HANDLE_QUERY,
   SHOPIFY_GET_CUSTOMER_ADDRESS_QUERY,
@@ -19,9 +24,18 @@ import {
   SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY,
 } from "./queries";
 import {
+  Cart,
   Collection,
   Connection,
+  Maybe,
   Product,
+  ShopifyCart,
+  ShopifyCartArgs,
+  ShopifyCartCreatePayload,
+  ShopifyCartLinesAddPayload,
+  ShopifyCartLinesRemovePayload,
+  ShopifyCartLinesUpdatePayload,
+  ShopifyCartPayload,
   ShopifyCollection,
   ShopifyCollectionArgs,
   ShopifyCollectionProductsArgs,
@@ -32,6 +46,10 @@ import {
   ShopifyCustomerArgs,
   ShopifyCustomerCreatePayload,
   ShopifyCustomerUpdatePayload,
+  ShopifyMutationCartCreateArgs,
+  ShopifyMutationCartLinesAddArgs,
+  ShopifyMutationCartLinesRemoveArgs,
+  ShopifyMutationCartLinesUpdateArgs,
   ShopifyMutationCustomerAccessTokenCreateArgs,
   ShopifyMutationCustomerAddressCreateArgs,
   ShopifyMutationCustomerAddressUpdateArgs,
@@ -43,9 +61,11 @@ import {
   ShopifyProductArgs,
   ShopifyProductRecommendationsArgs,
   ShopifyProductsArgs,
+  ShopifyUserError,
 } from "./types";
 import {
   removeEdgesAndNodes,
+  reshapeCart,
   reshapeCollection,
   reshapeCustomer,
   reshapeOrder,
@@ -89,8 +109,63 @@ export function createShopifyClient({
   return {
     graphqlClient: shopifyClient,
 
+    async getCart(args: ShopifyCartArgs) {
+      const { cart } = await shopifyClient.request<ShopifyCartPayload>(
+        SHOPIFY_GET_CART_BY_ID_QUERY,
+        args
+      );
+
+      return cart ? reshapeCart(cart) : null;
+    },
+
+    async createCart(args: ShopifyMutationCartCreateArgs) {
+      const { cartCreate } =
+        await shopifyClient.request<ShopifyCartCreatePayload>(
+          SHOPIFY_CART_CREATE_MUTATION,
+          args
+        );
+
+      return {
+        cart: cartCreate.cart ? reshapeCart(cartCreate.cart) : null,
+        userErrors: cartCreate.userErrors,
+      };
+    },
+
+    async addCartLines(args: ShopifyMutationCartLinesAddArgs) {
+      const { cartLinesAdd } =
+        await shopifyClient.request<ShopifyCartLinesAddPayload>(
+          SHOPIFY_CART_LINES_ADD_MUTATION,
+          args
+        );
+
+      return {
+        cart: cartLinesAdd.cart ? reshapeCart(cartLinesAdd.cart) : null,
+        userErrors: cartLinesAdd.userErrors,
+      };
+    },
+
+    async updateCartLines(args: ShopifyMutationCartLinesUpdateArgs) {
+      const { cartLinesUpdate } =
+        await shopifyClient.request<ShopifyCartLinesUpdatePayload>(
+          SHOPIFY_CART_LINES_UPDATE_MUTATION,
+          args
+        );
+
+      return cartLinesUpdate;
+    },
+
+    async removeCartLines(args: ShopifyMutationCartLinesRemoveArgs) {
+      const { cartLinesRemove } =
+        await shopifyClient.request<ShopifyCartLinesRemovePayload>(
+          SHOPIFY_CART_LINES_REMOVE_MUTATION,
+          args
+        );
+
+      return cartLinesRemove;
+    },
+
     /**
-     * @error customer/customer-not-found Thrown if the customer is not found with the given access token
+     * @error customer/invalid-access-token Thrown if the customer is not found with the given access token
      */
     async getCustomer(args: ShopifyCustomerArgs) {
       const { customer } = await shopifyClient.request<{
@@ -101,7 +176,7 @@ export function createShopifyClient({
 
       if (!customer) {
         throw {
-          code: "customer/customer-not-found",
+          code: "customer/invalid-access-token",
         };
       }
 

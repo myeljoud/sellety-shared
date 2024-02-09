@@ -10,7 +10,8 @@ import {
 /* -------------------------------------------------------------------------- */
 
 export const SHOPIFY_CART_CREATE_MUTATION = /* GraphQL */ `
-  mutation cartCreate($input: CartInput!) {
+  mutation cartCreate($input: CartInput!, $locale: LanguageCode)
+  @inContext(language: $locale) {
     cartCreate(input: $input) {
       cart {
         ...CartFragment
@@ -26,7 +27,11 @@ export const SHOPIFY_CART_CREATE_MUTATION = /* GraphQL */ `
 `;
 
 export const SHOPIFY_CART_LINES_ADD_MUTATION = /* GraphQL */ `
-  mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  mutation cartLinesAdd(
+    $cartId: ID!
+    $lines: [CartLineInput!]!
+    $locale: LanguageCode
+  ) @inContext(language: $locale) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart {
         ...CartFragment
@@ -42,7 +47,11 @@ export const SHOPIFY_CART_LINES_ADD_MUTATION = /* GraphQL */ `
 `;
 
 export const SHOPIFY_CART_LINES_UPDATE_MUTATION = /* GraphQL */ `
-  mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  mutation cartLinesUpdate(
+    $cartId: ID!
+    $lines: [CartLineUpdateInput!]!
+    $locale: LanguageCode
+  ) @inContext(language: $locale) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart {
         ...CartFragment
@@ -58,7 +67,11 @@ export const SHOPIFY_CART_LINES_UPDATE_MUTATION = /* GraphQL */ `
 `;
 
 export const SHOPIFY_CART_LINES_REMOVE_MUTATION = /* GraphQL */ `
-  mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+  mutation cartLinesRemove(
+    $cartId: ID!
+    $lineIds: [ID!]!
+    $locale: LanguageCode
+  ) @inContext(language: $locale) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart {
         ...CartFragment

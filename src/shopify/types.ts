@@ -403,6 +403,15 @@ export type ShopifyOrderArgs = {
   locale: ShopifyLocales;
 };
 
+export type ShopifyCartArgs = {
+  id: string;
+  locale: ShopifyLocales;
+};
+
+export type ShopifyCartPayload = {
+  cart: ShopifyCart | null;
+};
+
 export type ShopifyCartBuyerIdentityInput = {
   countryCode?: Maybe<"MR">;
   customerAccessToken?: Maybe<string>;
@@ -445,8 +454,10 @@ export type ShopifyMutationCartCreateArgs = {
 };
 
 export type ShopifyCartCreatePayload = {
-  cart: Maybe<ShopifyCart>;
-  userErrors: ShopifyUserError[];
+  cartCreate: {
+    cart: Maybe<ShopifyCart>;
+    userErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyMutationCartLinesAddArgs = {
@@ -455,8 +466,10 @@ export type ShopifyMutationCartLinesAddArgs = {
 };
 
 export type ShopifyCartLinesAddPayload = {
-  cart: Maybe<ShopifyCart>;
-  userErrors: ShopifyUserError[];
+  cartLinesAdd: {
+    cart: Maybe<ShopifyCart>;
+    userErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyMutationCartLinesRemoveArgs = {
@@ -465,8 +478,10 @@ export type ShopifyMutationCartLinesRemoveArgs = {
 };
 
 export type ShopifyCartLinesRemovePayload = {
-  cart: Maybe<ShopifyCart>;
-  userErrors: ShopifyUserError[];
+  cartLinesRemove: {
+    cart: Maybe<ShopifyCart>;
+    userErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyMutationCartLinesUpdateArgs = {
@@ -475,8 +490,10 @@ export type ShopifyMutationCartLinesUpdateArgs = {
 };
 
 export type ShopifyCartLinesUpdatePayload = {
-  cart: Maybe<ShopifyCart>;
-  userErrors: ShopifyUserError[];
+  cartLinesUpdate: {
+    cart: Maybe<ShopifyCart>;
+    userErrors: ShopifyUserError[];
+  };
 };
 
 export type ShopifyUserError = {
