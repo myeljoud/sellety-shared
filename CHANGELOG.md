@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.5
+
+### Patch Changes
+
+- 9ebfb70: Altering `getCollectionProducts` to better fit `web` and `mobile`.
+
 ## 0.3.4
 
 ### Patch Changes
