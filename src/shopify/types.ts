@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 
 export type ShopifyLocales = "AR" | "FR" | "EN";
 
@@ -355,10 +356,16 @@ export type ShopifyProductsArgs = {
   locale: ShopifyLocales;
 };
 
-export type ShopifyProductArgs = {
-  handle: string;
-  locale: ShopifyLocales;
-};
+export type ShopifyProductArgs = { locale: ShopifyLocales } & (
+  | {
+      id: string;
+      handle?: never;
+    }
+  | {
+      id?: never;
+      handle: string;
+    }
+);
 
 export type ShopifyProductRecommendationsArgs = {
   productId: string;

@@ -73,6 +73,7 @@ import {
   reshapeProduct,
   reshapeProducts,
 } from "./utils";
+import { SHOPIFY_GET_PRODUCT_QUERY } from "./queries/get-product";
 
 export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
@@ -287,14 +288,14 @@ export function createShopifyClient({
       return customerAccessTokenCreate.customerAccessToken;
     },
 
-    async getProduct(args: ShopifyProductArgs): Promise<Product | undefined> {
+    async getProduct(args: ShopifyProductArgs) {
       const { product } = await shopifyClient.request<{
         product?: ShopifyProduct;
-      }>(SHOPIFY_GET_PRODUCT_BY_HANDLE_QUERY, {
+      }>(SHOPIFY_GET_PRODUCT_QUERY, {
         ...args,
       });
 
-      if (!product) return undefined;
+      if (!product) return null;
 
       return reshapeProduct(product);
     },
