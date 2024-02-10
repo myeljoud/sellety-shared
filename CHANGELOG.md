@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.6
+
+### Patch Changes
+
+- 9d9c97d: Changing `ShopifyCollectionProductsArgs` to make `after` accept `null`.
+
 ## 0.3.5
 
 ### Patch Changes
