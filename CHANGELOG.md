@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.3
+
+### Patch Changes
+
+- 77b5442: Minor changes to cart mutation types, added `locale` as required.
+
 ## 0.3.2
 
 ### Patch Changes
