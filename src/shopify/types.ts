@@ -389,7 +389,7 @@ export type ShopifyCollectionArgs = {
 export type ShopifyCollectionProductsArgs = {
   locale: ShopifyLocales;
   first: number;
-  after: string;
+  after: Maybe<string>;
 } & (
   | {
       id: string;
