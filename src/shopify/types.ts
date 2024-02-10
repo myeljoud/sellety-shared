@@ -375,8 +375,6 @@ export type ShopifyProductRecommendationsArgs = {
 
 export type ShopifyCollectionProductsPayload = {
   collection: Maybe<{
-    id: string;
-    handle: string;
     products: Connection<ShopifyProduct>;
   }>;
 };

@@ -9,8 +9,6 @@ export const SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY = /* GraphQL */ `
     $locale: LanguageCode
   ) @inContext(language: $locale) {
     collection(handle: $handle) {
-      id
-      handle
       products(first: $first, after: $after) {
         pageInfo {
           startCursor
