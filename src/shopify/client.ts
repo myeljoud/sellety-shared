@@ -39,6 +39,7 @@ import {
   ShopifyCollection,
   ShopifyCollectionArgs,
   ShopifyCollectionProductsArgs,
+  ShopifyCollectionProductsPayload,
   ShopifyCustomer,
   ShopifyCustomerAccessTokenCreatePayload,
   ShopifyCustomerAddressCreatePayload,
@@ -74,6 +75,7 @@ import {
   reshapeProducts,
 } from "./utils";
 import { SHOPIFY_GET_PRODUCT_QUERY } from "./queries/get-product";
+import { SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY } from "./queries/get-collection-products";
 
 export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
@@ -367,17 +369,15 @@ export function createShopifyClient({
       return reshapeCollection(collection);
     },
 
-    async getCollectionProducts(
-      args: ShopifyCollectionProductsArgs
-    ): Promise<Connection<Product>> {
-      const { collection } = await shopifyClient.request<{
-        collection?: { products: Connection<ShopifyProduct> };
-      }>(SHOPIFY_GET_COLLECTION_PRODUCTS_BY_HANDLE_QUERY, {
-        ...args,
-      });
+    async getCollectionProducts(args: ShopifyCollectionProductsArgs) {
+      const { collection } =
+        await shopifyClient.request<ShopifyCollectionProductsPayload>(
+          SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY,
+          args
+        );
 
       if (!collection) {
-        throw Error("No collection with the provided handle.");
+        return null;
       }
 
       return {

@@ -373,19 +373,33 @@ export type ShopifyProductRecommendationsArgs = {
   intent?: "COMPLEMENTARY" | "RELATED" | null;
 };
 
+export type ShopifyCollectionProductsPayload = {
+  collection: Maybe<{
+    id: string;
+    handle: string;
+    products: Connection<ShopifyProduct>;
+  }>;
+};
+
 export type ShopifyCollectionArgs = {
   handle: string;
   locale: ShopifyLocales;
 };
 
 export type ShopifyCollectionProductsArgs = {
-  handle: string;
   locale: ShopifyLocales;
-  after?: Maybe<string>;
-  before?: Maybe<string>;
-  first?: Maybe<number>;
-  last?: Maybe<number>;
-};
+  first: number;
+  after: string;
+} & (
+  | {
+      id: string;
+      handle?: never;
+    }
+  | {
+      id?: never;
+      handle: string;
+    }
+);
 
 export type ShopifyCustomerArgs = {
   customerAccessToken: string;
