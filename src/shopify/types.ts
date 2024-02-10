@@ -450,7 +450,8 @@ export type ShopifyCartInput = {
 };
 
 export type ShopifyMutationCartCreateArgs = {
-  input?: Maybe<ShopifyCartInput>;
+  input: Maybe<ShopifyCartInput>;
+  locale: ShopifyLocales;
 };
 
 export type ShopifyCartCreatePayload = {
@@ -463,6 +464,7 @@ export type ShopifyCartCreatePayload = {
 export type ShopifyMutationCartLinesAddArgs = {
   cartId: string;
   lines: ShopifyCartLineInput[];
+  locale: ShopifyLocales;
 };
 
 export type ShopifyCartLinesAddPayload = {
@@ -475,6 +477,7 @@ export type ShopifyCartLinesAddPayload = {
 export type ShopifyMutationCartLinesRemoveArgs = {
   cartId: string;
   lineIds: string[];
+  locale: ShopifyLocales;
 };
 
 export type ShopifyCartLinesRemovePayload = {
@@ -487,6 +490,7 @@ export type ShopifyCartLinesRemovePayload = {
 export type ShopifyMutationCartLinesUpdateArgs = {
   cartId: string;
   lines: ShopifyCartLineUpdateInput[];
+  locale: ShopifyLocales;
 };
 
 export type ShopifyCartLinesUpdatePayload = {
