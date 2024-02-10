@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.4
+
+### Patch Changes
+
+- d3840e2: `getProduct` method now accepts product `id` or `handle`, correctly typed.
+
 ## 0.3.3
 
 ### Patch Changes
