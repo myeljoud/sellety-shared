@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.2
+
+### Patch Changes
+
+- 4d6d834: Bug fix: Fixing the return type of `createCustomerAddress`
+
 ## 0.3.1
 
 ### Patch Changes
