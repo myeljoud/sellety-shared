@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.11
+
+### Patch Changes
+
+- b6b1c1f: Exporting queries
+
 ## 0.3.10
 
 ### Patch Changes
