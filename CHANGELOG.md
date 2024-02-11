@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.8
+
+### Patch Changes
+
+- 2cbac23: adding some new args `getProductRecommendations`
+
 ## 0.3.7
 
 ### Patch Changes
