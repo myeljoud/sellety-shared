@@ -18,6 +18,11 @@ export type Money = {
   currencyCode: string;
 };
 
+export type Weight = {
+  unit: "GRAMS" | "KILOGRAMS";
+  value: number;
+};
+
 export type PageInfo = {
   endCursor?: Maybe<string>;
   hasNextPage: boolean;
@@ -886,6 +891,37 @@ export type ShopifyAdminDraftOrderLineItem = {
 
 export type ShopifyAdminCalculatedDraftOrder = {
   availableShippingRates: ShopifyShippingRate[];
+};
+
+export type ShopifyAdminDeliveryProfile = {
+  profileLocationGroups: {
+    locationGroupZones: {
+      nodes: {
+        methodDefinitions: {
+          nodes: ShopifyAdminDeliveryMethodDefinition[];
+        };
+      }[];
+    };
+  }[];
+};
+
+export type ShopifyAdminDeliveryMethodDefinition = {
+  id: string;
+  name: string;
+  active: boolean;
+  description?: Maybe<string>;
+  methodConditions: ShopifyAdminDeliveryCondition[];
+  rateProvider: {
+    id: string;
+    price: Money;
+  };
+};
+
+export type ShopifyAdminDeliveryCondition = {
+  id: string;
+  field: "TOTAL_PRICE" | "TOTAL_WEIGHT";
+  operator: "GREATER_THAN_OR_EQUAL_TO" | "LESS_THAN_OR_EQUAL_TO";
+  conditionCriteria: Money | Weight;
 };
 
 export enum ShopifyOrderFinancialStatus {
