@@ -129,6 +129,24 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
   ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 
+export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_SIMPLE_MUTATION = /* GraphQL */ `
+  mutation draftOrderComplete($id: ID!, $paymentPending: Boolean) {
+    draftOrderComplete(id: $id, paymentPending: $paymentPending) {
+      draftOrder {
+        id
+        status
+        order {
+          id
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 /* -------------------------------------------------------------------------- */
 /*                    Shopify admin API customer mutations                    */
 /* -------------------------------------------------------------------------- */
