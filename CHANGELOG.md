@@ -1,5 +1,14 @@
 # sellety-shared
 
+## 0.3.10
+
+### Patch Changes
+
+- 9e5bdf7: Added new queries and types:
+
+  Queries: - `SHOPIFY_ADMIN_GET_SHIPPING_RATES_QUERY` - `SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT`
+  Types: - `Weight` - `ShopifyAdminDeliveryProfile` - `ShopifyAdminDeliveryMethodDefinition` - `ShopifyAdminDeliveryCondition`
+
 ## 0.3.9
 
 ### Patch Changes
