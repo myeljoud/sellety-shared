@@ -122,9 +122,12 @@ export const SHOPIFY_GET_PRODUCTS_BY_QUERY = /* GraphQL */ `
 `;
 
 export const SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY = /* GraphQL */ `
-  query getProductRecommendations($productId: ID!, $locale: LanguageCode)
-  @inContext(language: $locale) {
-    productRecommendations(productId: $productId) {
+  query getProductRecommendations(
+    $productId: ID!
+    $intent: ProductRecommendationIntent!
+    $locale: LanguageCode
+  ) @inContext(language: $locale) {
+    productRecommendations(productId: $productId, intent: $intent) {
       ...ProductFragment
     }
   }

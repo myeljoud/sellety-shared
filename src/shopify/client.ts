@@ -14,22 +14,20 @@ import {
 import {
   SHOPIFY_GET_CART_BY_ID_QUERY,
   SHOPIFY_GET_COLLECTION_BY_HANDLE_QUERY,
-  SHOPIFY_GET_COLLECTION_PRODUCTS_BY_HANDLE_QUERY,
   SHOPIFY_GET_CUSTOMER_ADDRESS_QUERY,
   SHOPIFY_GET_CUSTOMER_ORDERS_QUERY,
   SHOPIFY_GET_CUSTOMER_QUERY,
   SHOPIFY_GET_ORDER_QUERY,
   SHOPIFY_GET_PRODUCTS_BY_QUERY,
-  SHOPIFY_GET_PRODUCT_BY_HANDLE_QUERY,
   SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY,
 } from "./queries";
+import { SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY } from "./queries/get-collection-products";
+import { SHOPIFY_GET_PRODUCT_QUERY } from "./queries/get-product";
 import {
-  Cart,
   Collection,
   Connection,
   Maybe,
   Product,
-  ShopifyCart,
   ShopifyCartArgs,
   ShopifyCartCreatePayload,
   ShopifyCartLinesAddPayload,
@@ -62,7 +60,6 @@ import {
   ShopifyProductArgs,
   ShopifyProductRecommendationsArgs,
   ShopifyProductsArgs,
-  ShopifyUserError,
 } from "./types";
 import {
   removeEdgesAndNodes,
@@ -74,8 +71,6 @@ import {
   reshapeProduct,
   reshapeProducts,
 } from "./utils";
-import { SHOPIFY_GET_PRODUCT_QUERY } from "./queries/get-product";
-import { SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY } from "./queries/get-collection-products";
 
 export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
@@ -318,16 +313,14 @@ export function createShopifyClient({
       };
     },
 
-    async getProductRecommendations(
-      args: ShopifyProductRecommendationsArgs
-    ): Promise<Product[]> {
+    async getProductRecommendations(args: ShopifyProductRecommendationsArgs) {
       const { productRecommendations } = await shopifyClient.request<{
-        productRecommendations: ShopifyProduct[];
-      }>(SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY, {
-        ...args,
-      });
+        productRecommendations: Maybe<ShopifyProduct[]>;
+      }>(SHOPIFY_GET_PRODUCT_RECOMMENDATIONS_QUERY, args);
 
-      return reshapeProducts(productRecommendations);
+      return productRecommendations
+        ? reshapeProducts(productRecommendations)
+        : [];
     },
 
     async getAllProducts(): Promise<Product[]> {
