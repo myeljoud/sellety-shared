@@ -13,7 +13,7 @@ import type {
   ShopifyCustomerExtraDataShape,
 } from "./shopify/types";
 
-export type Maybe<T> = T | null | undefined;
+export type Maybe<T> = T | null;
 
 export type Locale = "en" | "ar" | "fr";
 export type StoreMode = (typeof STORE_MODES)[number];
