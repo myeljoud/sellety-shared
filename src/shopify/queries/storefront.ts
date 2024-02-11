@@ -99,12 +99,24 @@ export const SHOPIFY_GET_PRODUCTS_BY_IDS_QUERY = /* GraphQL */ `
 
 export const SHOPIFY_GET_PRODUCTS_BY_QUERY = /* GraphQL */ `
   query getProductsByQuery(
-    $first: Int!
     $query: String!
+    $first: Int!
     $after: String
+    $before: String
+    $last: Int
+    $reverse: Boolean
+    $sortKey: ProductSortKeys
     $locale: LanguageCode
   ) @inContext(language: $locale) {
-    products(first: $first, query: $query, after: $after) {
+    products(
+      first: $first
+      query: $query
+      after: $after
+      before: $before
+      last: $last
+      reverse: $reverse
+      sortKey: $sortKey
+    ) {
       pageInfo {
         hasNextPage
         endCursor

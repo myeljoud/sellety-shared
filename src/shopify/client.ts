@@ -297,7 +297,7 @@ export function createShopifyClient({
       return reshapeProduct(product);
     },
 
-    async getProducts(args: ShopifyProductsArgs): Promise<Connection<Product>> {
+    async getProducts(args: ShopifyProductsArgs) {
       const { products } = await shopifyClient.request<{
         products: Connection<ShopifyProduct>;
       }>(SHOPIFY_GET_PRODUCTS_BY_QUERY, {
@@ -306,9 +306,9 @@ export function createShopifyClient({
 
       return {
         pageInfo: products.pageInfo,
-        edges: products.edges.map(p => ({
-          cursor: p.cursor,
-          node: reshapeProduct(p.node),
+        edges: products.edges.map(product => ({
+          cursor: product.cursor,
+          node: reshapeProduct(product.node),
         })),
       };
     },
@@ -323,7 +323,7 @@ export function createShopifyClient({
         : [];
     },
 
-    async getAllProducts(): Promise<Product[]> {
+    async getAllProducts() {
       let allProducts: ShopifyProduct[] = [];
       let hasNext: boolean | undefined;
       let cursor: string | null = null;

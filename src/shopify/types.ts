@@ -346,14 +346,14 @@ export type ShopifyCustomerExtraDataShape = {
 };
 
 export type ShopifyProductsArgs = {
-  after?: Maybe<string>;
+  query: string;
+  first: number;
+  after: Maybe<string>;
+  locale: ShopifyLocales;
   before?: Maybe<string>;
-  first?: Maybe<number>;
   last?: Maybe<number>;
-  query?: Maybe<string>;
   reverse?: Maybe<boolean>;
   sortKey?: Maybe<ShopifyProductSortKeys>;
-  locale: ShopifyLocales;
 };
 
 export type ShopifyProductArgs = { locale: ShopifyLocales } & (
