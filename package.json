@@ -3,7 +3,7 @@
   "description": "This package includes utlity functions for Shopify, Sanity and common tasks.",
   "author": "Mohamed yahye El Joud <yahyajoud@gmail.com>",
   "license": "MIT",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "private": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

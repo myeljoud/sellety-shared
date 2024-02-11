@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.12
+
+### Patch Changes
+
+- 0772d44: New mutation `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_SIMPLE_MUTATION`
+
 ## 0.3.11
 
 ### Patch Changes
