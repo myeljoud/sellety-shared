@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.9
+
+### Patch Changes
+
+- 4479129: Updating `getProducts`
+
 ## 0.3.8
 
 ### Patch Changes
