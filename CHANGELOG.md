@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.3.13
+
+### Patch Changes
+
+- 9e21126: Fixing an error in `SHOPIFY_ADMIN_GET_SHIPPING_RATES_QUERY` where the `id` is marked as optional.
+
 ## 0.3.12
 
 ### Patch Changes
