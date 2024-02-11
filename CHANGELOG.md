@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.3.7
+
+### Patch Changes
+
+- f4e11b4: Fixing a small bug in `SHOPIFY_GET_COLLECTION_PRODUCTS_QUERY`.
+- 598285c: `getCollectionProducts` returns only products
+
 ## 0.3.6
 
 ### Patch Changes
