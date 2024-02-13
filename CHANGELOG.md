@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.4.1
+
+### Patch Changes
+
+- 8eb1dbf: Using the new `SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT` in draft order mutations
+
 ## 0.4.0
 
 ### Minor Changes
