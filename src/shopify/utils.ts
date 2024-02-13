@@ -280,9 +280,11 @@ export const reshapeDraftOrder = (
           collections: product.collections,
           compareAtPriceRange: {
             maxVariantPrice:
-              product.compareAtPriceRange.maxVariantCompareAtPrice,
+              product.compareAtPriceRange?.maxVariantCompareAtPrice ??
+              product.priceRangeV2.maxVariantPrice,
             minVariantPrice:
-              product.compareAtPriceRange.minVariantCompareAtPrice,
+              product.compareAtPriceRange?.minVariantCompareAtPrice ??
+              product.priceRangeV2.minVariantPrice,
           },
           description: product.description,
           descriptionHtml: product.descriptionHtml,

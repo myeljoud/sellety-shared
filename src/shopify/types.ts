@@ -257,10 +257,7 @@ export type ShopifyAdminProductV2 = {
   descriptionHtml: string;
   options: ProductOption[];
   priceRangeV2: ProductPriceRangeV2;
-  compareAtPriceRange: {
-    maxVariantCompareAtPrice: Money;
-    minVariantCompareAtPrice: Money;
-  };
+  compareAtPriceRange: Maybe<ProductCompareAtPriceRange>;
   variants: Connection<ShopifyProductVariant>;
   featuredImage?: Maybe<Image>;
   images: Connection<Image>;
@@ -293,6 +290,11 @@ export type ShopifyProductVariant = {
 export type ProductPriceRangeV2 = {
   maxVariantPrice: Money;
   minVariantPrice: Money;
+};
+
+export type ProductCompareAtPriceRange = {
+  maxVariantCompareAtPrice: Money;
+  minVariantCompareAtPrice: Money;
 };
 
 export type ShopifyCollection = {
@@ -630,12 +632,10 @@ export type ShopifyAdminDraftOrderCompletePayload = {
 
 export type ShopifyAdminDraftOrderCompleteSimplePayload = {
   draftOrder?: Maybe<{
-    draftOrder: Maybe<{
+    id: string;
+    status: ShopifyAdminDraftOrderStatus;
+    order: Maybe<{
       id: string;
-      status: ShopifyAdminDraftOrderStatus;
-      order: {
-        id: string;
-      };
     }>;
   }>;
   userErrors: ShopifyAdminUserError;
