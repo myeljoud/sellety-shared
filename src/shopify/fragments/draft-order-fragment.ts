@@ -14,25 +14,107 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     email
     name
     ready
-    lineItems(first: 50) {
+    lineItems(first: 30) {
       edges {
         node {
           id
           name
-          image {
-            ...ImageWithoutUrlFragment
-            url(transform: { maxHeight: 450, maxWidth: 450 })
-          }
           originalTotal
-          originalUnitPrice
-          totalDiscount
           quantity
-          variantTitle
-          vendor
           product {
             id
             handle
             title
+            vendor
+            description
+            descriptionHtml
+            options {
+              id
+              name
+              values
+            }
+            priceRangeV2 {
+              maxVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            compareAtPriceRange {
+              maxVariantCompareAtPrice {
+                amount
+                currencyCode
+              }
+            }
+            variants(first: 20) {
+              edges {
+                node {
+                  id
+                  title
+                  availableForSale
+                  inventoryQuantity
+                  selectedOptions {
+                    name
+                    value
+                  }
+                  price
+                  compareAtPrice
+                  image {
+                    ...ImageWithoutUrlFragment
+                    url(transform: { maxHeight: 450, maxWidth: 450 })
+                  }
+                  inventoryItem {
+                    requiresShipping
+                  }
+                }
+              }
+            }
+            images(first: 10) {
+              edges {
+                node {
+                  ...ImageWithoutUrlFragment
+                  url(transform: { maxHeight: 700, maxWidth: 700 })
+                }
+              }
+            }
+            featuredImage {
+              ...ImageWithoutUrlFragment
+              url(transform: { maxHeight: 450, maxWidth: 450 })
+            }
+            seo {
+              title
+              description
+            }
+            collections(first: 20) {
+              edges {
+                node {
+                  id
+                  title
+                }
+              }
+            }
+            tags
+            updatedAt
+            brand: metafield(namespace: "custom", key: "product_brand") {
+              id
+              key
+              namespace
+              value
+            }
+            numberOfReviews: metafield(
+              namespace: "reviews"
+              key: "rating_count"
+            ) {
+              id
+              key
+              namespace
+              value
+            }
+            averageRating: metafield(namespace: "reviews", key: "rating") {
+              id
+              key
+              namespace
+              value
+            }
           }
         }
       }

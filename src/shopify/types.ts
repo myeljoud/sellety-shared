@@ -248,7 +248,35 @@ export type ShopifyAdminProduct = {
   averageRating: Maybe<Metafield>;
 };
 
-export type ShopifyAdminProductVariant = {
+export type ShopifyAdminProductV2 = {
+  id: string;
+  handle: string;
+  title: string;
+  vendor: string;
+  description: string;
+  descriptionHtml: string;
+  options: ProductOption[];
+  priceRangeV2: ProductPriceRangeV2;
+  compareAtPriceRange: {
+    maxVariantCompareAtPrice: Money;
+    minVariantCompareAtPrice: Money;
+  };
+  variants: Connection<ShopifyProductVariant>;
+  featuredImage?: Maybe<Image>;
+  images: Connection<Image>;
+  seo: SEO;
+  collections: Connection<{
+    id: string;
+    title: string;
+  }>;
+  tags: string[];
+  updatedAt: string;
+  brand: Maybe<Metafield>;
+  numberOfReviews: Maybe<Metafield>;
+  averageRating: Maybe<Metafield>;
+};
+
+export type ShopifyProductVariant = {
   id: string;
   title: string;
   availableForSale: boolean;
@@ -843,6 +871,18 @@ export type ShopifyMoneyBag = {
   shopMoney: Money;
 };
 
+export type DraftOrder = Omit<
+  ShopifyAdminDraftOrder,
+  "lineItems" | "shippingLine"
+> & {
+  lineItems: DraftOrderLineItem[];
+  shippingLine?: {
+    handle?: Maybe<string>;
+    price?: Maybe<Money>;
+    title?: Maybe<string>;
+  };
+};
+
 export type ShopifyAdminDraftOrder = {
   completedAt?: Maybe<string>;
   createdAt: string;
@@ -851,16 +891,8 @@ export type ShopifyAdminDraftOrder = {
   email?: Maybe<string>;
   id: string;
   name: string;
-  note2?: Maybe<string>;
-  phone?: Maybe<string>;
   ready: boolean;
-  customer: {
-    id: string;
-  };
   lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
-  lineItemsSubtotalPrice: ShopifyMoneyBag;
-  /** This will only be available for `SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION` payload */
-  order?: Maybe<ShopifyAdminOrder>;
   shippingAddress?: Maybe<MailingAddress>;
   shippingLine?: Maybe<ShopifyAdminShippingLine>;
   status: ShopifyAdminDraftOrderStatus;
@@ -870,6 +902,13 @@ export type ShopifyAdminDraftOrder = {
   totalPrice: string;
   totalShippingPrice: string;
   totalTax: string;
+};
+
+export type DraftOrderLineItem = Omit<
+  ShopifyAdminDraftOrderLineItem,
+  "product"
+> & {
+  product: Maybe<Product>;
 };
 
 export type ShopifyAdminDraftOrderLineItem = {
@@ -882,11 +921,7 @@ export type ShopifyAdminDraftOrderLineItem = {
   quantity: number;
   variantTitle?: Maybe<string>;
   vendor?: Maybe<string>;
-  product: Maybe<{
-    id: string;
-    handle: string;
-    title: string;
-  }>;
+  product: Maybe<ShopifyAdminProductV2>;
 };
 
 export type ShopifyAdminCalculatedDraftOrder = {

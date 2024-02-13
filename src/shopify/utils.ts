@@ -14,6 +14,7 @@ import type {
   Collection,
   Connection,
   Customer,
+  DraftOrder,
   DraftOrderLineItemInput,
   Image,
   Order,
@@ -21,6 +22,7 @@ import type {
   OrderStatus,
   Product,
   ProductOption,
+  ShopifyAdminDraftOrder,
   ShopifyCart,
   ShopifyCollection,
   ShopifyCustomer,
@@ -249,6 +251,80 @@ export const reshapeOrdersV2 = (orders: Connection<ShopifyOrder>) => {
   }
 
   return reshapedOrders;
+};
+
+export const reshapeDraftOrder = (
+  draftOrder: ShopifyAdminDraftOrder
+): DraftOrder => {
+  const { lineItems, shippingLine, ...rest } = draftOrder;
+  return {
+    ...rest,
+    shippingLine: {
+      title: shippingLine?.title,
+      handle: shippingLine?.shippingRateHandle!,
+      price: shippingLine?.originalPriceSet.presentmentMoney,
+    },
+    lineItems: removeEdgesAndNodes(draftOrder.lineItems).map(item => {
+      const { product: _, ...rest } = item;
+
+      const product = item.product!;
+
+      return {
+        ...rest,
+        product: reshapeProduct({
+          availableForSale: product.variants.edges.some(
+            v => v.node.availableForSale
+          ),
+          averageRating: product.averageRating,
+          brand: product.brand,
+          collections: product.collections,
+          compareAtPriceRange: {
+            maxVariantPrice:
+              product.compareAtPriceRange.maxVariantCompareAtPrice,
+            minVariantPrice:
+              product.compareAtPriceRange.minVariantCompareAtPrice,
+          },
+          description: product.description,
+          descriptionHtml: product.descriptionHtml,
+          featuredImage: product.featuredImage!,
+          handle: product.handle,
+          id: product.id,
+          images: product.images,
+          numberOfReviews: product.numberOfReviews,
+          options: product.options,
+          priceRange: product.priceRangeV2,
+          seo: product.seo,
+          tags: product.tags,
+          title: product.title,
+          updatedAt: product.updatedAt,
+          vendor: product.vendor,
+          variants: {
+            pageInfo: product.variants.pageInfo,
+            edges: product.variants.edges.map(({ node, cursor }) => ({
+              cursor,
+              node: {
+                id: node.id,
+                title: node.title,
+                availableForSale: node.availableForSale,
+                quantityAvailable: node.inventoryQuantity,
+                selectedOptions: node.selectedOptions,
+                price: {
+                  amount: node.price,
+                  currencyCode: "MRU",
+                },
+                compareAtPrice: {
+                  amount: node.compareAtPrice!,
+                  currencyCode: "MRU",
+                },
+                image: node.image!,
+                requiresShipping: node.inventoryItem.requiresShipping,
+              },
+            })),
+          },
+        }),
+      };
+    }),
+  };
 };
 
 export const hasProductOptions = (options?: ProductOption[]) => {
