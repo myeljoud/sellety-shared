@@ -628,6 +628,19 @@ export type ShopifyAdminDraftOrderCompletePayload = {
   userErrors: ShopifyAdminUserError;
 };
 
+export type ShopifyAdminDraftOrderCompleteSimplePayload = {
+  draftOrder?: Maybe<{
+    draftOrder: Maybe<{
+      id: string;
+      status: ShopifyAdminDraftOrderStatus;
+      order: {
+        id: string;
+      };
+    }>;
+  }>;
+  userErrors: ShopifyAdminUserError;
+};
+
 export type ShopifyMutationCustomerAccessTokenCreateArgs = {
   input: {
     email: string;

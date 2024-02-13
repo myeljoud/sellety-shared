@@ -2,11 +2,11 @@ import { SHOPIFY_CART_ITEMS_LIMIT } from "../../constants";
 import {
   SHOPIFY_ADDRESS_FRAGMENT,
   SHOPIFY_ADMIN_CALCULATED_DRAFT_ORDER_FRAGMENT,
-  SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT,
   SHOPIFY_ADMIN_PRODUCT_FRAGMENT,
   SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT,
   SHOPIFY_MONEY_BAG_FRAGMENT,
 } from "../fragments";
+import { SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT } from "../fragments/draft-order-fragment";
 
 /* -------------------------------------------------------------------------- */
 /*                        Shopify draft order mutations                       */
@@ -130,8 +130,18 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
 `;
 
 export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_SIMPLE_MUTATION = /* GraphQL */ `
-  mutation draftOrderComplete($id: ID!, $paymentPending: Boolean) {
-    draftOrderComplete(id: $id, paymentPending: $paymentPending) {
+  mutation draftOrderComplete(
+    $id: ID!
+    $paymentPending: Boolean
+    $paymentGatewayId: ID
+    $sourceName: String
+  ) {
+    draftOrderComplete(
+      id: $id
+      paymentPending: $paymentPending
+      paymentGatewayId: $paymentGatewayId
+      sourceName: $sourceName
+    ) {
       draftOrder {
         id
         status

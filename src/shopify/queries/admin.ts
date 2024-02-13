@@ -1,4 +1,4 @@
-import { SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT } from "../fragments";
+import { SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT } from "../fragments/draft-order-fragment";
 
 export const SHOPIFY_ADMIN_GET_DRAFT_ORDER_QUERY = /* GraphQL */ `
   query getDraftOrder($id: ID!) {
