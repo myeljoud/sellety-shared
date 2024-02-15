@@ -24,6 +24,11 @@
       "import": "./sanity/index.mjs",
       "require": "./sanity/index.js",
       "types": "./sanity/index.d.ts"
+    },
+    "./firebase": {
+      "import": "./firebase/index.mjs",
+      "require": "./firebase/index.js",
+      "types": "./firebase/index.d.ts"
     }
   },
   "files": [

@@ -24,4 +24,9 @@ export default defineConfig([
     entry: ["src/sanity/index.ts"],
     outDir: "sanity",
   },
+  {
+    ...commonConfig,
+    entry: ["src/firebase/index.ts"],
+    outDir: "firebase",
+  },
 ]);
