@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.4.3
+
+### Patch Changes
+
+- 09dfdd9: Added some common firebase's firestore types
+
 ## 0.4.2
 
 ### Patch Changes
