@@ -264,3 +264,5 @@ export type LatLngLiteral = {
   lat: number;
   lng: number;
 };
+
+export type ErrorStateType = "unknown" | "network" | "server" | "notFound";

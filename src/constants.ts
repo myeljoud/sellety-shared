@@ -122,3 +122,191 @@ export const THEME_OPTIONS = ["light", "dark", "system"] as const;
 
 export const SHOPIFY_CART_ITEMS_LIMIT = 20;
 export const SHOPIFY_PRODUCT_IMAGES_LIMIT = 10;
+
+export const FIREBASE_FUNCTIONS_REGION = "europe-west3";
+
+export const LANGUAGE_STORAGE_KEY = "APP_LANGUAGE";
+export const SHOPIFY_CART_ID_STORAGE_KEY = "SHOPIFY_CART_ID";
+export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
+export const THEME_KEY = "THEME_KEY";
+export const EXPO_PUSH_TOKEN_KEY = "EXPO_PUSH_TOKEN_STORAGE_KEY";
+export const OUGIYA_FORMAT_KEY = "OUGIYA_FORMAT_KEY";
+export const CURRENT_DRAFT_ORDER_ID_KEY = "CURRENT_DRAFT_ORDER_ID_KEY";
+
+export const CATEGORY_COLLECTION = "CATEGORY";
+export const VENDOR_COLLECTION = "VENDOR";
+
+export const MAP_DEFAULT_LOCATION_DELTA = {
+  latitudeDelta: 0.0015,
+  longitudeDelta: 0.0015,
+};
+
+export const MAP_DEFAULT_REGION = {
+  latitude: 18.089307,
+  longitude: -15.979099,
+  ...MAP_DEFAULT_LOCATION_DELTA,
+};
+
+export const MAPS_DARK_STYLES = [
+  {
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#242f3e",
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#746855",
+      },
+    ],
+  },
+  {
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#242f3e",
+      },
+    ],
+  },
+  {
+    featureType: "administrative.locality",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#d59563",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#d59563",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#263c3f",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#6b9a76",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#38414e",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        color: "#212a37",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#9ca5b3",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#746855",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        color: "#1f2835",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#f3d19c",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#2f3948",
+      },
+    ],
+  },
+  {
+    featureType: "transit.station",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#d59563",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [
+      {
+        color: "#17263c",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#515c6d",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        color: "#17263c",
+      },
+    ],
+  },
+];
+
+export const CARD_IMAGE_WIDTH = 140;

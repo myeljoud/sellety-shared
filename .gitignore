@@ -6,5 +6,6 @@ coverage
 dist
 /shopify
 /sanity
+/firebase
 .vscode
 .vercel

@@ -1,6 +1,9 @@
-import type { CurrencyFormat, LatLngLiteral } from "./types";
+import type { CurrencyFormat, ErrorStateType } from "./types";
 
+import { GraphQLError } from "graphql";
 import { REQUIRED_ENV_VARIABLES } from "./constants";
+import { FirestoreUserAddress } from "./firebase";
+import { ShopifyMailingAddressInput } from "./shopify";
 
 export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith)
@@ -185,62 +188,6 @@ export const isSelletyRandomEmail = (email?: string | null) => {
   return email.includes("--") && email.endsWith("@sellety.com");
 };
 
-export const composeStaticMapUrl = ({
-  zoom = 16,
-  center,
-  size,
-  mapType,
-  marker,
-  markerSize,
-  markerColor,
-}: {
-  zoom?: number;
-  center: LatLngLiteral;
-  size: {
-    width: number;
-    height: number;
-  };
-  mapType?: "roadmap" | "satellite" | "terrain" | "hybrid";
-  marker?: LatLngLiteral;
-  markerSize?: "tiny" | "mid" | "small";
-  markerColor?:
-    | "black"
-    | "brown"
-    | "green"
-    | "purple"
-    | "yellow"
-    | "blue"
-    | "gray"
-    | "orange"
-    | "red"
-    | "white";
-}) => {
-  const url = new URL("https://maps.googleapis.com/maps/api/staticmap");
-
-  if (!process.env.NEXT_PUBLIC_GOOGLE_MAP_STATIC_KEY) {
-    throw new Error("Missing Google Map Static API Key");
-  }
-
-  url.searchParams.set("center", `${center.lat},${center.lng}`);
-  url.searchParams.set("zoom", zoom.toString());
-  url.searchParams.set("size", `${size.width}x${size.height}`);
-  url.searchParams.set("scale", "2");
-  url.searchParams.set("key", process.env.NEXT_PUBLIC_GOOGLE_MAP_STATIC_KEY);
-
-  if (mapType) {
-    url.searchParams.set("maptype", mapType);
-  }
-
-  if (marker) {
-    const markerCoordinates = `${marker.lat},${marker.lng}`;
-    const paramValue = `color:${markerColor}|size:${markerSize}|${markerCoordinates}`;
-
-    url.searchParams.set("markers", paramValue);
-  }
-
-  return url.href;
-};
-
 export const phoneWithoutCode = (phone: string) => {
   return phone.replace("+222", "");
 };
@@ -275,4 +222,32 @@ export const objectToArray = (obj: Record<string, string>) => {
 
 export const getFadedOpacity = (index: number) => {
   return (1 / index) * 1.5;
+};
+
+export const parseResponseError = (error: any): ErrorStateType => {
+  if (error instanceof GraphQLError) {
+    return "server";
+  }
+
+  if (
+    (error instanceof Error && error.message === "Network request failed") ||
+    error?.isNetworkError
+  ) {
+    return "network";
+  }
+
+  return "unknown";
+};
+
+export const addressToShopifyAddress = (
+  firestoreAddress: FirestoreUserAddress
+): ShopifyMailingAddressInput => {
+  return {
+    address1: firestoreAddress?.address1,
+    address2: firestoreAddress?.address2,
+    city: firestoreAddress?.city,
+    company: firestoreAddress?.country,
+    firstName: firestoreAddress?.displayName,
+    phone: firestoreAddress?.phone,
+  };
 };

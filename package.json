@@ -34,6 +34,7 @@
   "files": [
     "shopify",
     "sanity",
+    "firebase",
     "dist",
     "src"
   ],
@@ -46,18 +47,20 @@
     "release": "pnpm lint && pnpm test && pnpm build && changeset publish"
   },
   "peerDependencies": {
-    "graphql-request": "^6.1.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.8.7",
-    "graphql-request": "^6.1.0",
     "tsup": "^7.2.0",
     "type-fest": "^4.5.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6",
     "zod": "^3.22.4"
+  },
+  "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0"
   }
 }

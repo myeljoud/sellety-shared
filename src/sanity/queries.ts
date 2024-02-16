@@ -1,5 +1,6 @@
 import {
   SANITY_ALL_MODULES_FRAGMENT,
+  SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT,
   SANITY_CATEGORIES_FRAGMENT,
   SANITY_SITE_METADATA_FRAGMENT,
 } from "./fragments";
@@ -46,6 +47,24 @@ export const SANITY_MODULAR_PAGE_QUERY = `
       ${SANITY_ALL_MODULES_FRAGMENT}
     }
   }
+`;
+
+/**
+ * @param type - The type of the document, usually `home | preorder`
+ * @param id - The id of sanity document, usually `sellety | grocery | preorderPage`
+ */
+export const SANITY_MODULAR_PAGE_WITH_IMAGES_QUERY = /* groq */ `
+*[_type == $type && _id == $id][0] {
+  "slug": slug.current,
+  title,
+  modules[] {
+    "key": _key,
+    "type": _type,
+    title,
+    displayType,
+    ${SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT}
+  }
+}
 `;
 
 export const SANITY_GLOBAL_APP_DATA_QUERY = `
