@@ -4,6 +4,7 @@ import { GraphQLError } from "graphql";
 import { REQUIRED_ENV_VARIABLES } from "./constants";
 import { FirestoreUserAddress } from "./firebase";
 import { ShopifyMailingAddressInput } from "./shopify";
+import { OpenLocationCode } from "./openlocationcode";
 
 export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith)
@@ -251,3 +252,16 @@ export const addressToShopifyAddress = (
     phone: firestoreAddress?.phone,
   };
 };
+
+export function decodePluscode(plusCode: string) {
+  if (!OpenLocationCode.isValid(plusCode)) {
+    return null;
+  }
+
+  const { latitudeCenter, longitudeCenter } = OpenLocationCode.decode(plusCode);
+
+  return {
+    latitude: latitudeCenter,
+    longitude: longitudeCenter,
+  };
+}
