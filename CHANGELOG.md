@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.3
+
+### Patch Changes
+
+- 51360f2: Exporting `staticMapsUrlCreator` and `StaticMapsUrlCreatorOptions`
+
 ## 0.5.2
 
 ### Patch Changes
