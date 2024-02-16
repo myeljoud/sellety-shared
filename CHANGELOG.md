@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.1
+
+### Patch Changes
+
+- e7ed217: Added new `ShippingRate` type.
+
 ## 0.5.0
 
 ### Minor Changes
