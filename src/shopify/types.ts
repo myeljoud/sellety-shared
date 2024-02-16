@@ -145,6 +145,12 @@ export type MailingAddress = {
   formatted: string[];
 };
 
+export type ShippingRate = {
+  title: string;
+  price: string;
+  handle?: Maybe<string>;
+};
+
 export type Metafield = {
   id: string;
   key: string;
