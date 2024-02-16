@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.2
+
+### Patch Changes
+
+- b34ad99: Added `decodePluscode` util function.
+
 ## 0.5.1
 
 ### Patch Changes
