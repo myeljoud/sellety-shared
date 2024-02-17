@@ -278,11 +278,7 @@ export function createShopifyClient({
         ShopifyMutationCustomerAccessTokenCreateArgs
       >(SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION, args);
 
-      if (!customerAccessTokenCreate.customerAccessToken?.accessToken) {
-        throw Error("Wrong credentials.");
-      }
-
-      return customerAccessTokenCreate.customerAccessToken;
+      return customerAccessTokenCreate;
     },
 
     async getProduct(args: ShopifyProductArgs) {
