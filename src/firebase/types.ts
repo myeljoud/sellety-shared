@@ -1,3 +1,5 @@
+import { Product } from "../shopify";
+
 export interface FirestoreUserDocument {
   expoPushToken?: string | null;
   ougiyaFormat?: "MRU" | "MRO" | null;
@@ -17,4 +19,27 @@ export type FirestoreUserAddress = {
   phone?: string | null;
   city?: string | null;
   country?: string | null;
+};
+
+export type FirestoreProductDocument = {
+  id: string;
+  averageRating: number | null;
+  ratingCount: number;
+  imageUrl: string | null;
+  title: string;
+  handle: string;
+  vendor: string | null;
+  brand: string | null;
+  isBestseller: boolean;
+  isGrocey: boolean;
+};
+
+export type FirestoreProductReview = {
+  userId: string;
+  title: string;
+  body: string;
+  rating: number;
+  reviewerName: string;
+  reviewerPhotoUrl: string | null;
+  customerId: string | null;
 };
