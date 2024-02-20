@@ -1,5 +1,3 @@
-import { Product } from "../shopify";
-
 export interface FirestoreUserDocument {
   expoPushToken?: string | null;
   ougiyaFormat?: "MRU" | "MRO" | null;
