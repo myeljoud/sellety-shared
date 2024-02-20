@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.5
+
+### Patch Changes
+
+- adf6815: added new types for firebase firestore
+
 ## 0.5.4
 
 ### Patch Changes
