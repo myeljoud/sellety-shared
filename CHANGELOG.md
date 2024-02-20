@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.4
+
+### Patch Changes
+
+- be3226e: Change `createCustomerAccessToken` return type
+
 ## 0.5.3
 
 ### Patch Changes
