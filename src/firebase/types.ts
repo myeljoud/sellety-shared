@@ -30,6 +30,8 @@ export type FirestoreProductDocument = {
   brand: string | null;
   isBestseller: boolean;
   isGrocey: boolean;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type FirestoreProductDocumentInput = {
@@ -50,6 +52,15 @@ export type FirestoreProductReview = {
   reviewerName: string;
   createdAt: string;
   updatedAt: string;
+  reviewerPhotoUrl: string | null;
+  customerId: string | null;
+};
+
+export type FirestoreProductReviewInput = {
+  userId: string;
+  body: string;
+  rating: number;
+  reviewerName: string;
   reviewerPhotoUrl: string | null;
   customerId: string | null;
 };
