@@ -1,3 +1,5 @@
+import { Timestamp } from "@google-cloud/firestore";
+
 export interface FirestoreUserDocument {
   expoPushToken?: string | null;
   ougiyaFormat?: "MRU" | "MRO" | null;
@@ -50,8 +52,8 @@ export type FirestoreProductReview = {
   body: string;
   rating: number;
   reviewerName: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
   reviewerPhotoUrl: string | null;
   customerId: string | null;
 };
