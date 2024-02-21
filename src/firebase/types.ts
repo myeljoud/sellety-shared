@@ -45,7 +45,6 @@ export type FirestoreProductDocumentInput = {
 
 export type FirestoreProductReview = {
   userId: string;
-  title: string;
   body: string;
   rating: number;
   reviewerName: string;
