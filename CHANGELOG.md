@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.9
+
+### Patch Changes
+
+- dc9465f: added `Timestamp` type
+
 ## 0.5.8
 
 ### Patch Changes
