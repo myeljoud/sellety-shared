@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.6
+
+### Patch Changes
+
+- 881bb7c: added new firebase type
+
 ## 0.5.5
 
 ### Patch Changes
