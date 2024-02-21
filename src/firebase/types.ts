@@ -86,3 +86,5 @@ export type FunctionsAddProductReviewArgs = {
   review: FirestoreProductReview;
   product: FirestoreProductDocumentInput;
 };
+
+export { Timestamp };
