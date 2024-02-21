@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.12
+
+### Patch Changes
+
+- c487e2f: new func `shopifyLegacyIdFromGid`
+
 ## 0.5.11
 
 ### Patch Changes
