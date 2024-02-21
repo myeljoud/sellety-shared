@@ -64,3 +64,23 @@ export type FirestoreProductReviewInput = {
   reviewerPhotoUrl: string | null;
   customerId: string | null;
 };
+
+export type FunctionsAccountDeletionRequestArgs = {
+  email: string;
+  name: string;
+  inquiry: string;
+};
+
+export type FunctionsAccountDeletionRequestPayload = {
+  success: boolean;
+};
+
+export type FunctionsSaveAnonUsersDataArgs = {
+  expoPushToken: string;
+};
+
+export type FunctionsAddProductReviewArgs = {
+  productId: string;
+  review: FirestoreProductReview;
+  product: FirestoreProductDocumentInput;
+};
