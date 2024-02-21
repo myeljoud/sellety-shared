@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.7
+
+### Patch Changes
+
+- 47ee1d4: removing `title` key from `FirestoreProductReview`
+
 ## 0.5.6
 
 ### Patch Changes
