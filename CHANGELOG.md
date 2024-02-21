@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.11
+
+### Patch Changes
+
+- 198b337: small
+
 ## 0.5.10
 
 ### Patch Changes
