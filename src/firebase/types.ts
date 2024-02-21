@@ -21,9 +21,20 @@ export type FirestoreUserAddress = {
 
 export type FirestoreProductDocument = {
   id: string;
-  averageRating: number | null;
+  averageRating: number;
   ratingCount: number;
-  imageUrl: string | null;
+  imageUrl: string;
+  title: string;
+  handle: string;
+  vendor: string | null;
+  brand: string | null;
+  isBestseller: boolean;
+  isGrocey: boolean;
+};
+
+export type FirestoreProductDocumentInput = {
+  id: string;
+  imageUrl: string;
   title: string;
   handle: string;
   vendor: string | null;
