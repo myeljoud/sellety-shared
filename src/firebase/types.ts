@@ -83,7 +83,7 @@ export type FunctionsSaveAnonUsersDataArgs = {
 
 export type FunctionsAddProductReviewArgs = {
   productId: string;
-  review: FirestoreProductReview;
+  review: FirestoreProductReviewInput;
   product: FirestoreProductDocumentInput;
 };
 
