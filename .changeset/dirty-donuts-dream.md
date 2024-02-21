@@ -2,4 +2,4 @@
 "sellety-shared": patch
 ---
 
-patchs
+patch
