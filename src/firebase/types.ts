@@ -32,8 +32,8 @@ export type FirestoreProductDocument = {
   brand: string | null;
   isBestseller: boolean;
   isGrocey: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 };
 
 export type FirestoreProductDocumentInput = {
