@@ -48,6 +48,8 @@ export type FirestoreProductReview = {
   body: string;
   rating: number;
   reviewerName: string;
+  createdAt: string;
+  updatedAt: string;
   reviewerPhotoUrl: string | null;
   customerId: string | null;
 };
