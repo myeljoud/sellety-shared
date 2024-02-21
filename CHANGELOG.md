@@ -1,5 +1,13 @@
 # sellety-shared
 
+## 0.5.8
+
+### Patch Changes
+
+- d8febc4: added new types for firebase functions args and payloads
+- d1e355b: added two new fields to `FirestoreProductReview`
+- fc268d2: added new type `FirestoreProductReviewInput`
+
 ## 0.5.7
 
 ### Patch Changes
