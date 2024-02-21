@@ -364,11 +364,12 @@ export const getStoreModeFromTags = (tags: string[]): StoreMode => {
   return "sellety";
 };
 
-/**
- * TODO: these can be improved by infering the types shopify offers from `storefront-api-types`
- */
-export const getIdFromShopifyGid = (id: string, type?: "Product" | "Order") =>
-  id.split(`gid://shopify/${!type ? "Product" : type}/`)[1];
+export function shopifyLegacyIdFromGid(
+  id: string,
+  type: "Product" | "Order" | "Collection"
+) {
+  return id.split(`gid://shopify/${type}/`)[1];
+}
 
 export const getShopifyLocale = (locale?: Locale): ShopifyLocales => {
   switch (locale) {
