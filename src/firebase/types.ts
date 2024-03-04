@@ -6,6 +6,9 @@ export interface FirestoreUserDocument {
   cartId?: string | null;
   drafOrderId?: string | null;
   address?: FirestoreUserAddress | null;
+  email?: string | null;
+  displayName?: string | null;
+  phoneNumber?: string | null;
   customerId?: string | null;
   customerEmail?: string | null;
   customerAccessToken?: string | null;
