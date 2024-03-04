@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.13
+
+### Patch Changes
+
+- 67e2541: patch
+
 ## 0.5.12
 
 ### Patch Changes
