@@ -260,14 +260,7 @@ export function createShopifyClient({
         ShopifyMutationCustomerUpdateArgs
       >(SHOPIFY_CUSTOMER_UPDATE_MUTATION, args);
 
-      if (!customerUpdate.customer?.id || !customerUpdate.customerAccessToken) {
-        throw Error("Couldn't update customer");
-      }
-
-      return {
-        customerId: customerUpdate.customer.id,
-        newCustomerAccessToken: customerUpdate.customerAccessToken,
-      };
+      return customerUpdate;
     },
 
     async createCustomerAccessToken(
