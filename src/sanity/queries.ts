@@ -94,10 +94,10 @@ export const SANITY_PAGINATION_DATA_QUERY = `
 `;
 
 /**
- * @param slug - The shopify slug for the collection
+ * @param gid - The shopify gid for the collection
  */
 export const SANITY_COLLECTION_QUERY = `
-  *[_type == "collection" && store.slug.current == $slug][0] {
+  *[_type == "collection" && store.gid == $gid][0] {
     "shopifyId": store.gid,
     collectionType,
     modules[] {
