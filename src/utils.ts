@@ -265,3 +265,7 @@ export function decodePluscode(plusCode: string) {
     longitude: longitudeCenter,
   };
 }
+
+export function isValidRating(rating: number) {
+  return Number.isInteger(rating) && rating >= 1 && rating <= 5;
+}
