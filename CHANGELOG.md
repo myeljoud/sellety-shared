@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.5.14
+
+### Patch Changes
+
+- 074cacc: change return type of `updateCustomer` method on `createShopifyClient`.
+- b7bb6f3: change `.changeset/config.json`
+
 ## 0.5.13
 
 ### Patch Changes
