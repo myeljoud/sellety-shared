@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.16
+
+### Patch Changes
+
+- c35cc23: added the ability to include `Shopify-Storefront-Buyer-IP` header in `createShopifyClient` function.
+
 ## 0.5.15
 
 ### Patch Changes
