@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.5.15
+
+### Patch Changes
+
+- e14d0ed: New changes
+
 ## 0.5.14
 
 ### Patch Changes
