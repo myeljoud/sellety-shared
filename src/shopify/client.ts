@@ -71,38 +71,57 @@ import {
   reshapeProduct,
   reshapeProducts,
 } from "./utils";
+import { GraphQLClientRequestHeaders } from "graphql-request/build/esm/types";
 
 export const SHOPIFY_LATEST_API_VERSION = "2024-01";
 
-export function createShopifyClient({
-  storeDomain,
-  privateAccessToken,
-  publicAccessToken,
-  apiVersion = SHOPIFY_LATEST_API_VERSION,
-}: {
-  publicAccessToken: string;
-  /**
-   * Providing Shopify Private Access Token will override the Public Access Token.
-   */
-  privateAccessToken?: string;
-  /**
-   * Store domain needs to be of the format: `https://{{store_name}}.myshopify.com`
-   */
-  storeDomain: `https://${string}.myshopify.com`;
+type ShopifyClientBaseOptions = {
+  storeId: string;
   /**
    * Storefront API version, defaults to `2024-01`
    */
   apiVersion?: string;
-}) {
-  const endpoint = `${storeDomain}/api/${apiVersion}/graphql.json`;
+};
 
-  const shopifyClient = new GraphQLClient(endpoint, {
-    headers: {
-      ...(privateAccessToken
-        ? { "Shopify-Storefront-Private-Token": privateAccessToken }
-        : { "X-Shopify-Storefront-Access-Token": publicAccessToken }),
-    },
-  });
+type ShopifyClientOptionsPublic = ShopifyClientBaseOptions & {
+  type?: "public";
+  publicAccessToken: string;
+};
+
+type ShopifyClientOptionsPrivate = ShopifyClientBaseOptions & {
+  type: "private";
+  privateAccessToken: string;
+  ipAddress?: string;
+};
+
+type ShopifyClientOptions =
+  | ShopifyClientOptionsPublic
+  | ShopifyClientOptionsPrivate;
+
+export function createShopifyClient({
+  storeId,
+  apiVersion = SHOPIFY_LATEST_API_VERSION,
+  ...rest
+}: ShopifyClientOptions) {
+  const endpoint = `https://${storeId}.myshopify.com/api/${apiVersion}/graphql.json`;
+
+  const shopifyClient = new GraphQLClient(endpoint);
+
+  if (rest.type === "private") {
+    shopifyClient.setHeader(
+      "Shopify-Storefront-Private-Token",
+      rest.privateAccessToken
+    );
+
+    if (rest.ipAddress) {
+      shopifyClient.setHeader("Shopify-Storefront-Buyer-IP", rest.ipAddress);
+    }
+  } else {
+    shopifyClient.setHeader(
+      "X-Shopify-Storefront-Access-Token",
+      rest.publicAccessToken
+    );
+  }
 
   return {
     graphqlClient: shopifyClient,
