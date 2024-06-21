@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.5
+
+### Patch Changes
+
+- 2b1df18: patch
+
 ## 0.6.4
 
 ### Patch Changes
