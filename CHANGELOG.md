@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.3
+
+### Patch Changes
+
+- 85a5b0c: cleaning sanity queries, fragments and types.
+
 ## 0.6.2
 
 ### Patch Changes
