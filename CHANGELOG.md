@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.2
+
+### Patch Changes
+
+- 81f74f7: fix a bug in `SanityModularPageV2`
+
 ## 0.6.1
 
 ### Patch Changes
