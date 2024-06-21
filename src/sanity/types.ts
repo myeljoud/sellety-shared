@@ -167,8 +167,8 @@ export type SanityModule =
 export type SanityGlobalAppData = {
   site: null;
   categories: {
-    sellety: SanityCategories;
-    grocery: SanityCategories;
+    sellety: SanityCategories | SanityCategoriesGroups;
+    grocery: SanityCategories | SanityCategoriesGroups;
   };
 };
 
