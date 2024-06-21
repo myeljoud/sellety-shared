@@ -615,7 +615,7 @@ export type SanityModularPageV2 = {
   _createdAt: string;
   _updatedAt: string;
   title: SanityInternationalizedString[];
-  modules: Maybe<SanityModule[]>;
+  modules: Maybe<SanityModuleV2[]>;
 };
 
 /**
