@@ -156,7 +156,7 @@ export type SanityAndShopifyProductsModule = Omit<
   products: Product[];
 };
 
-export type SanityModuleV2 =
+export type SanityModule =
   | SanityHeroModule
   | SanityCarouselModule
   | SanityBrandsModule
@@ -178,7 +178,7 @@ export type SanityModularPage = {
   _createdAt: string;
   _updatedAt: string;
   title: SanityInternationalizedString[];
-  modules: Maybe<SanityModuleV2[]>;
+  modules: Maybe<SanityModule[]>;
 };
 
 export type SanityDefaultPageWithCollectionArgs = {

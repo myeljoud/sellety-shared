@@ -3,7 +3,7 @@ import type { Locale } from "./types";
 
 import type {
   SanityModule,
-  SanityProductsListModuleWithShopifyProducts,
+  SanityAndShopifyProductsModule,
 } from "./sanity/types";
 import { getShopifyLocale, reshapeProducts, shopifyClient } from "./shopify";
 import { SHOPIFY_GET_PRODUCTS_BY_IDS_QUERY } from "./shopify/queries";
@@ -14,11 +14,11 @@ const swapSanityProductsWithShopifysInModules = async (
 ) => {
   const productsListModules: {
     i: number;
-    module: SanityProductsListModuleWithShopifyProducts;
+    module: SanityAndShopifyProductsModule;
   }[] = [];
 
   modules.forEach((module, i) => {
-    if (module.type === "productsList") {
+    if (module._type === "module.products") {
       productsListModules.push({ i, module });
     }
   });

@@ -1,14 +1,13 @@
 import type { PartialDeep } from "type-fest";
 
 import { CURRENCY_FORMATS, STORE_MODES, THEME_OPTIONS } from "./constants";
-import type { SanityProductReviews } from "./sanity/types";
 import type {
   Customer,
-  ShopifyAdminMutationDraftOrderCompleteArgs,
   Order,
   ProductOption,
   ProductVariant,
   SelectedOption,
+  ShopifyAdminMutationDraftOrderCompleteArgs,
   ShopifyCustomer,
   ShopifyCustomerExtraDataShape,
 } from "./shopify/types";
@@ -252,7 +251,7 @@ export type ChangePasswordApiResponse = { error: null } | { error: string };
 // export type ReviewCreateApiInput = NewReviewFormValues
 
 export type ReviewCreateApiResponse =
-  | { productReviews: SanityDocument<SanityProductReviews> | null; error: null }
+  | { productReviews: SanityDocument<any> | null; error: null }
   | { productReviews: never; error: string };
 
 export type LatLng = {
