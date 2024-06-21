@@ -99,8 +99,8 @@ export type ProductVariant = {
   quantityAvailable?: Maybe<number>;
   selectedOptions: SelectedOption[];
   price: Money;
-  compareAtPrice: Money;
-  image: Image;
+  compareAtPrice?: Money;
+  image?: Maybe<Image>;
   requiresShipping: boolean;
 };
 
@@ -217,7 +217,7 @@ export type ShopifyProduct = {
   priceRange: ProductPriceRangeV2;
   compareAtPriceRange: ProductPriceRangeV2;
   variants: Connection<ProductVariant>;
-  featuredImage: Image;
+  featuredImage?: Maybe<Image>;
   images: Connection<Image>;
   seo: SEO;
   collections: Connection<{

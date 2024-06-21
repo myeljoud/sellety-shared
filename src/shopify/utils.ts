@@ -261,7 +261,7 @@ export const reshapeDraftOrder = (
     ...rest,
     shippingLine: {
       title: shippingLine?.title,
-      handle: shippingLine?.shippingRateHandle!,
+      handle: shippingLine?.shippingRateHandle,
       price: shippingLine?.originalPriceSet.presentmentMoney,
     },
     lineItems: removeEdgesAndNodes(draftOrder.lineItems).map(item => {
@@ -288,7 +288,7 @@ export const reshapeDraftOrder = (
           },
           description: product.description,
           descriptionHtml: product.descriptionHtml,
-          featuredImage: product.featuredImage!,
+          featuredImage: product.featuredImage,
           handle: product.handle,
           id: product.id,
           images: product.images,
@@ -315,10 +315,10 @@ export const reshapeDraftOrder = (
                   currencyCode: "MRU",
                 },
                 compareAtPrice: {
-                  amount: node.compareAtPrice!,
+                  amount: node.compareAtPrice ?? "--",
                   currencyCode: "MRU",
                 },
-                image: node.image!,
+                image: node.image,
                 requiresShipping: node.inventoryItem.requiresShipping,
               },
             })),

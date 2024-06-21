@@ -2,6 +2,12 @@ import type { Product } from "../shopify/types";
 
 export type Maybe<T> = T | null;
 
+export type InternationalizedString = {
+  _type: "internationalizedArrayStringValue";
+  _key: "ar" | "fr" | "en";
+  value?: string;
+};
+
 export declare type SanityDocument<
   T extends Record<string, unknown> = Record<string, unknown>
 > = {
@@ -116,6 +122,23 @@ export type SanityCollection = {
   title: SanityLocalizedText;
 };
 
+export type SanityCollectionV2 = {
+  _type: "collection";
+  storeType?: "sellety" | "grocery";
+  collectionType?: "COLLECTION" | "CATEGORY" | "VENDOR";
+  isVendorCertified?: boolean;
+  shopifyId: string;
+  titleOg: string;
+  slug: string;
+  isDeleted: boolean;
+  imageUrl?: string;
+  title?: InternationalizedString[];
+  /** Date format: `2024-02-22T05:42:45Z` */
+  _createdAt: string;
+  /** Date format: `2024-02-22T05:42:45Z` */
+  _updatedAt: string;
+};
+
 export type ProductModules = "productHero" | "productDetails";
 export type CollectionModules = "productsGrid";
 export type OtherModules =
@@ -146,6 +169,22 @@ export type SanityCategoriesGrouped = {
   categoriesFamiliesList: CategoriesFamiliesList[];
 } & SanityCategoriesBase;
 
+export type SanityCategoriesBaseV2 = {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+};
+
+export type SanityCategoriesSimpleV2 = SanityCategoriesBase & {
+  _type: "categories";
+  categoriesList: SanityCollectionV2[];
+};
+
+export type SanityCategoriesFamiliesV2 = SanityCategoriesBase & {
+  _type: "categoriesFamilies";
+  categoriesFamiliesList: SanityCategoriesFamily[];
+};
+
 export type SanityLocalizedText = {
   en: string | null;
   fr: string | null;
@@ -164,6 +203,13 @@ export type SanityCategoriesList = {
   shopifyID: string;
   slug: string;
   title: SanityLocalizedText;
+};
+
+export type SanityCategoriesFamily = {
+  _type: "categoriesFamily";
+  _key: string;
+  title: InternationalizedString[];
+  categoriesList: SanityCollectionV2[];
 };
 
 export enum SelletyOrGrocery {
@@ -448,6 +494,14 @@ export type SanityGlobalWebAppData = {
 export type SanityGlobalAppData = {
   site: SanitySite;
   categories: SanityAllCategories;
+};
+
+export type SanityGlobalAppDataV2 = {
+  site: null;
+  categories: {
+    sellety: SanityCategories;
+    grocery: SanityCategories;
+  };
 };
 
 export type SanityModularPage = {

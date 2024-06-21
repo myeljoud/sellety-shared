@@ -7,6 +7,21 @@ export const SANITY_COLLECTION_FRAGMENT = `
   }
 `;
 
+export const SANITY_COLLECTION_FIELDS_FRAGMENT = /* groq */ `
+  _type,
+  title,
+  collectionType,
+  storeType,
+  isVendorCertified,
+  "shopifyId": store.gid,
+  "titleOg": store.title,
+  "slug": store.slug.current,
+  "imageUrl": store.imageUrl,
+  "isDeleted": store.isDeleted,
+  _createdAt,
+  _updatedAt,
+`;
+
 export const SANITY_EMPTY_COLLECTION_FRAGMENT = `
   "emptyFilterResults": {
     "heading": *[_type == "shopSettings"][0].noFilterResults[@.style == "h2"][0].children[0].text,
@@ -45,6 +60,32 @@ export const SANITY_CATEGORIES_FRAGMENT = `
     categoriesFamiliesList[] {
       title,
       ${SANITY_CATEGORIES_LIST_FRAGMENT}
+    }
+  }
+`;
+
+export const SANITY_CATEGORIES_FRAGMENT_V2 = /* groq */ `
+  (_type == "categories") => {
+    _id,
+    _type,
+    _createdAt,
+    _updatedAt,
+    categoriesList[]->{
+      ${SANITY_COLLECTION_FIELDS_FRAGMENT}
+    }
+  },
+  (_type == "categoriesFamilies") => {
+    _id,
+    _type,
+    _createdAt,
+    _updatedAt,
+    categoriesFamiliesList[] {
+      _type,
+      _key,
+      title,
+      categoriesList[]->{
+        ${SANITY_COLLECTION_FIELDS_FRAGMENT}
+      }
     }
   }
 `;
@@ -183,175 +224,80 @@ export const SANITY_ALL_MODULES_FRAGMENT = `
   }
 `;
 
-const COLLECTION_FRAGMENT = /* groq */ `
-  ...,
-  "title": {
-    "en": store.title,
-    "fr": titleTranslations.fr,
-    "ar": titleTranslations.ar
-  }
-`;
-
-const ASSET_FRAGMENT = /* groq */ `
+const SANITY_ASSET_FIELDS_FRAGMENT = /* groq */ `
+  _id,
+  _type,
   url,
-  size,
   extension,
-  "createdAt": _createdAt,
-  "updatedAt": _updatedAt,
-  "id": _id,
-  metadata {
-    blurHash,
-    "aspectRatio": dimensions.aspectRatio,
-    "height": dimensions.height,
-    "width": dimensions.width,
-    lqip,
-  }
+  mimeType,
+  _createdAt,
+  _updatedAt,
+  "width": metadata.width,
+  "height": metadata.height,
+  "lqip": metadata.lqip,
+  "blurHash": metadata.blurHash,
+  "aspectRatio": metadata.aspectRatio,
 `;
 
-const BRANDS_GRID = /* groq */ `
-  brandsImages[] {
-    ...,
-    collection-> {
-      ${COLLECTION_FRAGMENT}
-    },
-    image{
-      "type": _type,
-      asset->{
-        ${ASSET_FRAGMENT}
-      }
-    }
-  }
-`;
-
-const CATEGORIES_GRID = /* groq */ `
-  ...,
-  collectionList[]->{
-    ${COLLECTION_FRAGMENT}
-  }
-`;
-
-const COLLECTIONS_GRID = /* groq */ `
-  collectionsImages[] {
-    ...,
-    collection->{
-      ${COLLECTION_FRAGMENT}
-    },
-    image{
-      "type": _type,
-      asset->{
-        ${ASSET_FRAGMENT}
-      }
-    }
-  }
-`;
-
-const HERO_GRID = /* groq */ `
-  "heroCarouselImages": [
-    ...heroSecondaryImages[] {
-      ...,
-      collection->{
-        ${COLLECTION_FRAGMENT}
-      },
-      image{
-        "type": _type,
-        asset->{
-          ${ASSET_FRAGMENT}
-        }
-      }
-    },
-    ...heroCarouselImages[] {
-      ...,
-      collection->{
-        ${COLLECTION_FRAGMENT}
-      },
-      image{
-        "type": _type,
-        asset->{
-          ${ASSET_FRAGMENT}
-        }
-      }
-    }
-  ],
-`;
-
-const HERO_WITH_CONTENT = /* groq */ `
-  description,
-  heading,
-  heroMainImage{
-    ...,
-    collection->{
-      ${COLLECTION_FRAGMENT}
-    },
-    image{
-      "type": _type,
-      asset->{
-        ${ASSET_FRAGMENT}
-      }
-    }
-  }
-`;
-
-const INFORMATIONALS = /* groq */ `
-  informationalsList[] {
-    ...,
-    link[0] {
-      ...,
-      reference != null => {
-        ...,
-        reference->
-      },
-    }
-  }
-`;
-
-const PRODUCTS_LIST = /* groq */ `
-  products[]-> {
-    "shopifyId": store.gid
-  }
-`;
-
-const SIMPLE_HERO_SECTION = /* groq */ `
-  heroCarouselImages[] {
-    ...,
-    collection->{
-      ${COLLECTION_FRAGMENT}
-    },
-    image{
-      "type": _type,
-      asset->{
-        ${ASSET_FRAGMENT}
-      }
+const SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT = /* groq */ `
+  _type,
+  alt,
+  hasCollection,
+  collection->{
+    ${SANITY_COLLECTION_FIELDS_FRAGMENT}
+  },
+  image{
+    _type,
+    asset->{
+      ${SANITY_ASSET_FIELDS_FRAGMENT}
     }
   }
 `;
 
 export const SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT = /* groq */ `
-  "key": _key,
-  "type": _type,
-  title,
-  displayType,
-  (_type == "heroGrid") => {
-    ${HERO_GRID}
+  (_type == "module.hero") => {
+    _key,
+    title,
+    description,
+    image {
+      ${SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT}
+    }
   },
-  (_type == "heroWithContent") => {
-    ${HERO_WITH_CONTENT}
+  (_type == "module.carousel") => {
+    images[] {
+      _key,
+      ${SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT}
+    }
   },
-  (_type == "simpleHeroSection") => {
-    ${SIMPLE_HERO_SECTION}
+  (_type == "module.brands") => {
+    title,
+    brands[] {
+      _key,
+      ${SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT}
+    }
   },
-  (_type == "brandsGrid") => {
-    ${BRANDS_GRID}
+  (_type == "module.categories") => {
+    title,
+    collections[]->{
+      _key,
+      ${SANITY_COLLECTION_FIELDS_FRAGMENT}
+    }
   },
-  (_type == "categoriesGrid") => {
-    ${CATEGORIES_GRID}
+  (_type == "module.collections") => {
+    title,
+    collections[] {
+      _key,
+      ${SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT}
+    }
   },
-  (_type == "collectionsGrid") => {
-    ${COLLECTIONS_GRID}
-  },
-  (_type == "productsList") => {
-    ${PRODUCTS_LIST}
-  },
-  (_type == "informationals") => {
-    ${INFORMATIONALS}
+  (_type == "module.products") => {
+    title,
+    products[]->{
+      "shopifyId": store.gid,
+      "isDeleted": store.isDeleted,
+      "imageUrl": store.previewImageUrl,
+      "slug": store.slug.current,
+      "title": store.title,
+    }
   }
 `;

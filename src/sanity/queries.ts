@@ -2,6 +2,8 @@ import {
   SANITY_ALL_MODULES_FRAGMENT,
   SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT,
   SANITY_CATEGORIES_FRAGMENT,
+  SANITY_CATEGORIES_FRAGMENT_V2,
+  SANITY_COLLECTION_FIELDS_FRAGMENT,
   SANITY_SITE_METADATA_FRAGMENT,
 } from "./fragments";
 
@@ -36,6 +38,15 @@ export const SANITY_VENDOR_BY_ID_QUERY = `
 `;
 
 /**
+ * @param gid - The shopify gid for the collection.
+ */
+export const SANITY_VENDOR_BY_ID_QUERY_V2 = `
+  *[_type == "collection" && store.gid == $gid && collectionType == "VENDOR"][0] {
+    ${SANITY_COLLECTION_FIELDS_FRAGMENT}
+  }
+`;
+
+/**
  * @param type - The type of the document, usually `home | preorder`
  * @param id - The id of sanity document, usually `sellety | grocery | preorderPage`
  */
@@ -51,20 +62,21 @@ export const SANITY_MODULAR_PAGE_QUERY = `
 
 /**
  * @param type - The type of the document, usually `home | preorder`
- * @param id - The id of sanity document, usually `sellety | grocery | preorderPage`
+ * @param id - The id of sanity document, usually `home-sellety | home-grocery`
  */
 export const SANITY_MODULAR_PAGE_WITH_IMAGES_QUERY = /* groq */ `
-*[_type == $type && _id == $id][0] {
-  "slug": slug.current,
-  title,
-  modules[] {
-    "key": _key,
-    "type": _type,
+  *[_type == $type && _id == $id][0] {
+    _id,
+    _type,
+    _createdAt,
+    _updatedAt,
     title,
-    displayType,
-    ${SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT}
+    modules[] {
+      _key,
+      _type,
+      ${SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT}
+    }
   }
-}
 `;
 
 export const SANITY_GLOBAL_APP_DATA_QUERY = `
@@ -80,6 +92,20 @@ export const SANITY_GLOBAL_APP_DATA_QUERY = `
     "site": {
       ${SANITY_SITE_METADATA_FRAGMENT}
     }
+  }
+`;
+
+export const SANITY_GLOBAL_APP_DATA_QUERY_V2 = `
+  {
+    "categories": {
+      "sellety": *[_id == "selletyCategories"][0] {
+        ${SANITY_CATEGORIES_FRAGMENT_V2}
+      },
+      "grocery": *[_id == "groceryCategories"][0] {
+        ${SANITY_CATEGORIES_FRAGMENT_V2}
+      }
+    },
+    "site": {}
   }
 `;
 
@@ -112,5 +138,14 @@ export const SANITY_COLLECTION_QUERY = `
     "slug": store.slug.current,
     "imageUrl": store.imageUrl,
     "isDeleted": store.isDeleted,
+  }
+`;
+
+/**
+ * @param gid - The shopify gid for the collection
+ */
+export const SANITY_COLLECTION_QUERY_V2 = `
+  *[_type == "collection" && store.gid == $gid][0] {
+    ${SANITY_COLLECTION_FIELDS_FRAGMENT}
   }
 `;
