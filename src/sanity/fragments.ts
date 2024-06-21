@@ -232,11 +232,11 @@ const SANITY_ASSET_FIELDS_FRAGMENT = /* groq */ `
   mimeType,
   _createdAt,
   _updatedAt,
-  "width": metadata.width,
-  "height": metadata.height,
   "lqip": metadata.lqip,
   "blurHash": metadata.blurHash,
-  "aspectRatio": metadata.aspectRatio,
+  "width": metadata.dimensions.width,
+  "height": metadata.dimensions.height,
+  "aspectRatio": metadata.dimensions.aspectRatio,
 `;
 
 const SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT = /* groq */ `
@@ -256,7 +256,6 @@ const SANITY_IMAGE_LINKED_COLLECTION_FIELDS_FRAGMENT = /* groq */ `
 
 export const SANITY_ALL_MODULES_WITH_IMAGES_FRAGMENT = /* groq */ `
   (_type == "module.hero") => {
-    _key,
     title,
     description,
     image {

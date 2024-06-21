@@ -2,11 +2,22 @@ import type { Product } from "../shopify/types";
 
 export type Maybe<T> = T | null;
 
-export type InternationalizedString = {
-  _type: "internationalizedArrayStringValue";
+export type SanityInternationalizedBase = {
   _key: "ar" | "fr" | "en";
   value?: string;
 };
+
+export type SanityInternationalizedString = {
+  _type: "internationalizedArrayStringValue";
+} & SanityInternationalizedBase;
+
+export type SanityInternationalizedText = {
+  _type: "internationalizedArrayTextValue";
+} & SanityInternationalizedBase;
+
+export type SanityInternationalizedDescription = {
+  _type: "internationalizedArrayDescriptionValue";
+} & SanityInternationalizedBase;
 
 export declare type SanityDocument<
   T extends Record<string, unknown> = Record<string, unknown>
@@ -132,7 +143,7 @@ export type SanityCollectionV2 = {
   slug: string;
   isDeleted: boolean;
   imageUrl?: string;
-  title?: InternationalizedString[];
+  title?: SanityInternationalizedString[];
   /** Date format: `2024-02-22T05:42:45Z` */
   _createdAt: string;
   /** Date format: `2024-02-22T05:42:45Z` */
@@ -208,7 +219,7 @@ export type SanityCategoriesList = {
 export type SanityCategoriesFamily = {
   _type: "categoriesFamily";
   _key: string;
-  title: InternationalizedString[];
+  title: SanityInternationalizedString[];
   categoriesList: SanityCollectionV2[];
 };
 
@@ -337,6 +348,24 @@ export type SanityImageDeref = {
   asset: SanityImageAsset;
 };
 
+export type SanityImage = {
+  _type: "image";
+  asset: {
+    _id: string;
+    _type: "sanity.imageAsset";
+    url: string;
+    extension: string;
+    mimeType: string;
+    _createdAt: string;
+    _updatedAt: string;
+    lqip: string;
+    blurHash: string;
+    width: number;
+    height: number;
+    aspectRatio: number;
+  };
+};
+
 export type SanityBaseImage = {
   _type: string;
   asset: {
@@ -383,6 +412,15 @@ type SanityImageWithDerefCollectionAssociated =
 export type SanityImageWithDerefernecedCollection =
   | SanityImageWithDerefCollectionAssociated
   | SanityImageWithDerefCollectionNonAssociated;
+
+export type SanityImageLinkedCollection = {
+  _type: string;
+  alt: SanityInternationalizedString[];
+  image: SanityImage;
+} & (
+  | { hasCollection?: false; collection?: null }
+  | { hasCollection: true; collection: SanityCollectionV2 }
+);
 
 export type SanityModules =
   | "heroGrid"
@@ -476,6 +514,67 @@ export type SanityModule =
   | SanityCollectionGridModule
   | SanityProductsListModuleWithShopifyProducts;
 
+export type SanityModuleBase = {
+  _key: string;
+};
+
+export type SanityHeroModule = SanityModuleBase & {
+  _type: "module.hero";
+  title: SanityInternationalizedString[];
+  description?: SanityInternationalizedDescription[];
+  image: SanityImageLinkedCollection;
+};
+
+export type SanityCarouselModule = SanityModuleBase & {
+  _type: "module.carousel";
+  images: ({ _key: string } & SanityImageLinkedCollection)[];
+};
+
+export type SanityBrandsModule = SanityModuleBase & {
+  _type: "module.brands";
+  title: SanityInternationalizedString[];
+  brands: ({ _key: string } & SanityImageLinkedCollection)[];
+};
+
+export type SanityCategoriesModule = SanityModuleBase & {
+  _type: "module.categories";
+  title: SanityInternationalizedString[];
+  collections: ({ _key: string } & SanityCollectionV2)[];
+};
+
+export type SanityCollectionsModule = SanityModuleBase & {
+  _type: "module.collections";
+  title: SanityInternationalizedString[];
+  collections: ({ _key: string } & SanityImageLinkedCollection)[];
+};
+
+export type SanityProductsModule = SanityModuleBase & {
+  _type: "module.products";
+  title: SanityInternationalizedString[];
+  products: {
+    shopifyId: string;
+    isDeleted: boolean;
+    imageUrl: string;
+    slug: string;
+    title: string;
+  }[];
+};
+
+export type SanityAndShopifyProductsModule = Omit<
+  SanityProductsModule,
+  "products"
+> & {
+  products: Product[];
+};
+
+export type SanityModuleV2 =
+  | SanityHeroModule
+  | SanityCarouselModule
+  | SanityBrandsModule
+  | SanityCategoriesModule
+  | SanityCollectionsModule
+  | SanityAndShopifyProductsModule;
+
 export type SanityProductVendor = {
   collectionType: "VENDOR";
   imageUrl: string;
@@ -507,6 +606,15 @@ export type SanityGlobalAppDataV2 = {
 export type SanityModularPage = {
   slug: string;
   title: string;
+  modules: Maybe<SanityModule[]>;
+};
+
+export type SanityModularPageV2 = {
+  _id: string;
+  _type: string;
+  _createdAt: string;
+  _updatedAt: string;
+  title: SanityInternationalizedString[];
   modules: Maybe<SanityModule[]>;
 };
 
