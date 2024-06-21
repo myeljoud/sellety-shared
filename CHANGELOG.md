@@ -1,5 +1,12 @@
 # sellety-shared
 
+## 0.6.1
+
+### Patch Changes
+
+- dd94a92: Update `SanityModularPageArgs`.
+- f19e934: Add new types for new sanity modules.
+
 ## 0.6.0
 
 ### Minor Changes
