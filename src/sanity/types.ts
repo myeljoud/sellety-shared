@@ -661,8 +661,8 @@ export type SanityModularWebPageArgs = {
 };
 
 export type SanityModularPageArgs = {
-  type: "home" | "preorder";
-  id: "sellety" | "grocery" | "preorderPage";
+  type: "home";
+  id: "home-sellety" | "home-grocery";
 };
 
 export type SanityCollectionArgs = {
