@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.4
+
+### Patch Changes
+
+- e44d772: fix errors
+
 ## 0.6.3
 
 ### Patch Changes
