@@ -1,6 +1,4 @@
-import type { SanityLink } from "./types";
-
-export function getSanityLinkUrl(sanityLinkObject: SanityLink) {
+export function getSanityLinkUrl(sanityLinkObject: any) {
   if (sanityLinkObject._type === "linkExternal") {
     const { url, newWindow, title } = sanityLinkObject;
 
