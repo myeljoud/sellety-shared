@@ -4,8 +4,8 @@ import type { StoreMode, WithStoreMode } from "../types";
 export interface FirestoreUserDocument {
   expoPushToken?: string | null;
   ougiyaFormat?: "MRU" | "MRO" | null;
-  cartId?: WithStoreMode<string | null>;
-  drafOrderId?: WithStoreMode<string | null>;
+  cartId?: Partial<WithStoreMode<string | null>>;
+  drafOrderId?: Partial<WithStoreMode<string | null>>;
   address?: FirestoreUserAddress | null;
   email?: string | null;
   displayName?: string | null;
