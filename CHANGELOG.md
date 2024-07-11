@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.6
+
+### Patch Changes
+
+- 23846b0: update some types
+
 ## 0.6.5
 
 ### Patch Changes
