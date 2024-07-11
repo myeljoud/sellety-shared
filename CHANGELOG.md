@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.7
+
+### Patch Changes
+
+- 2c3a7e2: minor update to `FirestoreUserDocument`
+
 ## 0.6.6
 
 ### Patch Changes
