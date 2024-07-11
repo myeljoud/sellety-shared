@@ -1,10 +1,11 @@
-import { Timestamp } from "@google-cloud/firestore";
+import type { Timestamp } from "@google-cloud/firestore";
+import type { StoreMode, WithStoreMode } from "../types";
 
 export interface FirestoreUserDocument {
   expoPushToken?: string | null;
   ougiyaFormat?: "MRU" | "MRO" | null;
-  cartId?: string | null;
-  drafOrderId?: string | null;
+  cartId?: WithStoreMode<string | null>;
+  drafOrderId?: WithStoreMode<string | null>;
   address?: FirestoreUserAddress | null;
   email?: string | null;
   displayName?: string | null;
@@ -34,7 +35,7 @@ export type FirestoreProductDocument = {
   vendor: string | null;
   brand: string | null;
   isBestseller: boolean;
-  isGrocey: boolean;
+  storeMode: StoreMode;
   createdAt: Timestamp;
   updatedAt: Timestamp;
 };
@@ -47,7 +48,7 @@ export type FirestoreProductDocumentInput = {
   vendor: string | null;
   brand: string | null;
   isBestseller: boolean;
-  isGrocey: boolean;
+  storeMode: StoreMode;
 };
 
 export type FirestoreProductReview = {

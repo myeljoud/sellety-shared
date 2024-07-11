@@ -14,10 +14,16 @@ import type {
 
 export type Maybe<T> = T | null;
 
+export type EnumObject<E extends string, T> = {
+  [K in E]: T;
+};
+
 export type Locale = "en" | "ar" | "fr";
 export type StoreMode = (typeof STORE_MODES)[number];
 export type ThemeMode = (typeof THEME_OPTIONS)[number];
 export type CurrencyFormat = (typeof CURRENCY_FORMATS)[number];
+
+export type WithStoreMode<T> = EnumObject<StoreMode, T>;
 
 export type ModuleEntity = {
   type: string;
@@ -264,4 +270,4 @@ export type LatLngLiteral = {
   lng: number;
 };
 
-export type ErrorStateType = "unknown" | "network" | "server" | "notFound";
+export type ErrorStateType = "unknown" | "network" | "server" | "not-found";
