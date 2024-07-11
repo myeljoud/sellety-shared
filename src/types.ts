@@ -12,6 +12,8 @@ import type {
   ShopifyCustomerExtraDataShape,
 } from "./shopify/types";
 
+export type TODO = any;
+
 export type Maybe<T> = T | null;
 
 export type EnumObject<E extends string, T> = {
