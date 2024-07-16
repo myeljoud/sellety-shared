@@ -149,6 +149,21 @@ export const SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION = /* GraphQL */ `
   }
 `;
 
+export const SHOPIFY_CUSTOMER_ACCESS_TOKEN_RENEW_MUTATION = /* GraphQL */ `
+  mutation customerAccessTokenRenew($customerAccessToken: String!) {
+    customerAccessTokenRenew(customerAccessToken: $customerAccessToken) {
+      customerAccessToken {
+        accessToken
+        expiresAt
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 /* -------------------------------------------------------------------------- */
 /*                     Shopify customer address mutations                     */
 /* -------------------------------------------------------------------------- */

@@ -615,6 +615,11 @@ export type ShopifyCustomerAccessTokenCreatePayload = {
   customerUserErrors: ShopifyUserError[];
 };
 
+export type ShopifyCustomerAccessTokenRenewPayload = {
+  customerAccessToken?: Maybe<ShopifyCustomerAccessToken>;
+  userErrors: Omit<ShopifyUserError, "code">[];
+};
+
 export type ShopifyCustomerCreatePayload = {
   customer?: Maybe<ShopifyCustomer>;
   customerUserErrors: ShopifyUserError[];
@@ -652,6 +657,10 @@ export type ShopifyMutationCustomerAccessTokenCreateArgs = {
     email: string;
     password: string;
   };
+};
+
+export type ShopifyMutationCustomerAccessTokenRenewArgs = {
+  customerAccessToken: string;
 };
 
 export type ShopifyMutationCustomerCreateArgs = {
@@ -775,6 +784,10 @@ export type ShopifyAdminProductVariantInput = {
 
 export type ShopifyAdminMutationProductUpdateArgs = {
   input: ShopifyAdminProductInput;
+};
+
+export type ShopifyAdminDraftOrderArgs = {
+  id: string;
 };
 
 export type ShopifyAdminMutationDraftOrderCompleteArgs = {
