@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.8
+
+### Patch Changes
+
+- cadf2a9: add `TODO` type
+
 ## 0.6.7
 
 ### Patch Changes
