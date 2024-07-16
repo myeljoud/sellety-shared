@@ -414,3 +414,5 @@ export function createShopifyClient({
     },
   };
 }
+
+export type ShopifyClient = ReturnType<typeof createShopifyClient>;
