@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.9
+
+### Patch Changes
+
+- f67021a: new types: `ShopifyCustomerAccessTokenRenewPayload`, `ShopifyMutationCustomerAccessTokenRenewArgs` and `ShopifyAdminDraftOrderArgs`. and a query: `SHOPIFY_CUSTOMER_ACCESS_TOKEN_RENEW_MUTATION`
+
 ## 0.6.8
 
 ### Patch Changes
