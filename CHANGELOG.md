@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.10
+
+### Patch Changes
+
+- ea1bfc7: add new function `renewCustomerAccessToken`
+
 ## 0.6.9
 
 ### Patch Changes
