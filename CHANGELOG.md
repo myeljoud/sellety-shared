@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.11
+
+### Patch Changes
+
+- 03b41c7: Typing the return of `createShopifyClient`
+
 ## 0.6.10
 
 ### Patch Changes
