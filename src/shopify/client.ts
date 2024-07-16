@@ -7,6 +7,7 @@ import {
   SHOPIFY_CART_LINES_UPDATE_MUTATION,
   SHOPIFY_CREATE_CUSTOMER_ADDRESS_MUTATION,
   SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION,
+  SHOPIFY_CUSTOMER_ACCESS_TOKEN_RENEW_MUTATION,
   SHOPIFY_CUSTOMER_CREATE_MUTATION,
   SHOPIFY_CUSTOMER_UPDATE_MUTATION,
   SHOPIFY_UPDATE_CUSTOMER_ADDRESS_MUTATION,
@@ -40,6 +41,7 @@ import {
   ShopifyCollectionProductsPayload,
   ShopifyCustomer,
   ShopifyCustomerAccessTokenCreatePayload,
+  ShopifyCustomerAccessTokenRenewPayload,
   ShopifyCustomerAddressCreatePayload,
   ShopifyCustomerAddressUpdatePayload,
   ShopifyCustomerArgs,
@@ -50,6 +52,7 @@ import {
   ShopifyMutationCartLinesRemoveArgs,
   ShopifyMutationCartLinesUpdateArgs,
   ShopifyMutationCustomerAccessTokenCreateArgs,
+  ShopifyMutationCustomerAccessTokenRenewArgs,
   ShopifyMutationCustomerAddressCreateArgs,
   ShopifyMutationCustomerAddressUpdateArgs,
   ShopifyMutationCustomerCreateArgs,
@@ -291,6 +294,15 @@ export function createShopifyClient({
       >(SHOPIFY_CUSTOMER_ACCESS_TOKEN_CREATE_MUTATION, args);
 
       return customerAccessTokenCreate;
+    },
+
+    async renewCustomerAccessToken(customerAccessToken: string) {
+      const { customerAccessTokenRenew } = await shopifyClient.request<
+        { customerAccessTokenRenew: ShopifyCustomerAccessTokenRenewPayload },
+        ShopifyMutationCustomerAccessTokenRenewArgs
+      >(SHOPIFY_CUSTOMER_ACCESS_TOKEN_RENEW_MUTATION, { customerAccessToken });
+
+      return customerAccessTokenRenew;
     },
 
     async getProduct(args: ShopifyProductArgs) {
