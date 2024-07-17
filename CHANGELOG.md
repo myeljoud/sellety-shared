@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.12
+
+### Patch Changes
+
+- 2c5f689: fix a bug in `addressToShopifyAddress` util
+
 ## 0.6.11
 
 ### Patch Changes
