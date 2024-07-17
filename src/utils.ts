@@ -138,7 +138,7 @@ export const formatInternationalPhoneToLocal = (phone: string) => {
 
   if (!phoneWithoutCountryCode) return "";
 
-  return phoneWithoutCountryCode.replace(/(?<temp1>\d{2}(?!\s))/g, "$1 ");
+  return phoneWithoutCountryCode.replace(/\d{2}(?!\s)/g, "$1 ");
 };
 
 export const getDir = (locale: string) => (locale === "ar" ? "rtl" : "ltr");
@@ -247,9 +247,9 @@ export const addressToShopifyAddress = (
     address1: firestoreAddress?.address1,
     address2: firestoreAddress?.address2,
     city: firestoreAddress?.city,
-    company: firestoreAddress?.country,
     firstName: firestoreAddress?.displayName,
     phone: firestoreAddress?.phone,
+    country: firestoreAddress.country,
   };
 };
 
