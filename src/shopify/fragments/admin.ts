@@ -123,15 +123,10 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     createdAt
     updatedAt
     currencyCode
-    email
     id
     name
     note2
-    phone
     ready
-    customer {
-      id
-    }
     lineItems(first: 50) {
       edges {
         node {
@@ -158,9 +153,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     lineItemsSubtotalPrice {
       ...MoneyBagFragment
     }
-    shippingAddress {
-      ...AddressFragment
-    }
     shippingLine {
       ...AdminShippingLineFragment
     }
@@ -179,7 +171,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
 
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
   ${SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT}
-  ${SHOPIFY_ADDRESS_FRAGMENT}
   ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
 

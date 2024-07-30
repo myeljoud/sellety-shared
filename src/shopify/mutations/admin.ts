@@ -66,7 +66,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
       draftOrder {
         order {
           id
-          email
           cancelledAt
           displayFinancialStatus
           displayFulfillmentStatus
@@ -94,9 +93,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
           name
           poNumber
           processedAt
-          shippingAddress {
-            ...AddressFragment
-          }
           totalPriceSet {
             ...MoneyBagFragment
           }
@@ -124,7 +120,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_COMPLETE_MUTATION = /* GraphQL */ `
     }
   }
 
-  ${SHOPIFY_ADDRESS_FRAGMENT}
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
   ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;

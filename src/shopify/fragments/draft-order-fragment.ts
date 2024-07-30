@@ -1,4 +1,3 @@
-import { SHOPIFY_ADDRESS_FRAGMENT } from "./address-fragment";
 import { SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT } from "./admin";
 import {
   SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT,
@@ -11,7 +10,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     completedAt
     createdAt
     updatedAt
-    # email
     name
     ready
     lineItems(first: 30) {
@@ -119,9 +117,6 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
         }
       }
     }
-    # shippingAddress {
-    #   ...AddressFragment
-    # }
     shippingLine {
       ...AdminShippingLineFragment
     }
@@ -140,6 +135,5 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
 
   ${SHOPIFY_MONEY_BAG_FRAGMENT}
   ${SHOPIFY_ADMIN_SHIPPING_LINE_FRAGMENT}
-  # ${SHOPIFY_ADDRESS_FRAGMENT}
   ${SHOPIFY_IMAGE_WITHOUT_URL_FRAGMENT}
 `;
