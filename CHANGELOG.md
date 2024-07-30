@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.13
+
+### Patch Changes
+
+- 79dde87: fix a bug in `SHOPIFY_ADMIN_DRAFT_ORDER_CREATE_MUTATION`
+
 ## 0.6.12
 
 ### Patch Changes
