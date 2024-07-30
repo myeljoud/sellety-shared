@@ -920,12 +920,12 @@ export type ShopifyAdminDraftOrder = {
   createdAt: string;
   updatedAt: string;
   currencyCode: string;
-  email?: Maybe<string>;
+  // email?: Maybe<string>;
   id: string;
   name: string;
   ready: boolean;
   lineItems: Connection<ShopifyAdminDraftOrderLineItem>;
-  shippingAddress?: Maybe<MailingAddress>;
+  // shippingAddress?: Maybe<MailingAddress>;
   shippingLine?: Maybe<ShopifyAdminShippingLine>;
   status: ShopifyAdminDraftOrderStatus;
   subtotalPrice: string;
