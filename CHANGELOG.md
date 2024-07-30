@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.15
+
+### Patch Changes
+
+- 8fdec30: update `ShopifyAdminDraftOrder` type
+
 ## 0.6.14
 
 ### Patch Changes
