@@ -11,7 +11,7 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
     completedAt
     createdAt
     updatedAt
-    email
+    # email
     name
     ready
     lineItems(first: 30) {
@@ -119,9 +119,9 @@ export const SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT = /* GraphQL */ `
         }
       }
     }
-    shippingAddress {
-      ...AddressFragment
-    }
+    # shippingAddress {
+    #   ...AddressFragment
+    # }
     shippingLine {
       ...AdminShippingLineFragment
     }

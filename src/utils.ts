@@ -138,7 +138,7 @@ export const formatInternationalPhoneToLocal = (phone: string) => {
 
   if (!phoneWithoutCountryCode) return "";
 
-  return phoneWithoutCountryCode.replace(/\d{2}(?!\s)/g, "$1 ");
+  return phoneWithoutCountryCode.replace(/(?<temp1>\d{2}(?!\s))/g, "$1 ");
 };
 
 export const getDir = (locale: string) => (locale === "ar" ? "rtl" : "ltr");
