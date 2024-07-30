@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.16
+
+### Patch Changes
+
+- b5c65d3: cleaning draft order
+
 ## 0.6.15
 
 ### Patch Changes
