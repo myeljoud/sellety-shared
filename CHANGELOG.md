@@ -1,5 +1,11 @@
 # sellety-shared
 
+## 0.6.14
+
+### Patch Changes
+
+- 3f2dcbf: commenting fragment in `SHOPIFY_ADMIN_DRAFT_ORDER_FRAGMENT`
+
 ## 0.6.13
 
 ### Patch Changes
